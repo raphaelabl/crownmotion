@@ -1,0 +1,10 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Crown/Motion Logo - Elegant and Modern -->
+  <circle cx="20" cy="20" r="18" fill="none" stroke="#f48fb1" stroke-width="2"/>
+  <!-- Crown shape -->
+  <path d="M12 18 L20 12 L28 18 L26 24 L14 24 Z" fill="#f48fb1"/>
+  <!-- Motion lines -->
+  <path d="M8 28 Q20 24 32 28" stroke="#f48fb1" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M10 32 Q20 28 30 32" stroke="#f48fb1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>
+
