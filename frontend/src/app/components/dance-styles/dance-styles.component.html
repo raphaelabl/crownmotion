@@ -1,0 +1,32 @@
+<section class="py-32 md:py-24 bg-black text-white text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h1 class="font-serif text-5xl md:text-6xl mb-4">Tanzstile</h1>
+    <p class="text-xl md:text-2xl opacity-90">Entdecke die Vielfalt des Tanzes</p>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="bg-white p-0 border border-border-light transition-all duration-300 text-center flex flex-col overflow-hidden hover:-translate-y-1 hover:border-primary" *ngFor="let style of danceStyles">
+        <div class="w-full h-[300px] overflow-hidden bg-bg-tertiary m-0">
+          <img [src]="style.image" [alt]="style.name" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+        </div>
+        <h2 class="font-serif text-3xl mb-6 text-black px-8 pt-8">{{ style.name }}</h2>
+        <p class="text-lg leading-relaxed text-text-tertiary mb-8 px-8">{{ style.description }}</p>
+        <div class="px-8 pb-8 border-t border-border-medium text-left mt-auto">
+          <strong class="text-primary block mb-2 font-semibold">Für wen geeignet:</strong>
+          <p class="text-text-muted leading-relaxed">{{ style.suitableFor }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-bg-secondary text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h2 class="font-serif text-4xl mb-4 text-text-primary">Bereit für deine erste Stunde?</h2>
+    <p class="text-xl text-text-muted mb-10">Buche jetzt einen Kurs in deinem Lieblingsstil</p>
+    <a routerLink="/kurse" class="btn btn-primary">Kurse ansehen</a>
+  </div>
+</section>

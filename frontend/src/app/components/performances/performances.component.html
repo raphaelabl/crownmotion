@@ -1,0 +1,56 @@
+<section class="py-32 md:py-24 bg-black text-white text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h1 class="font-serif text-5xl md:text-6xl mb-4">Auftritte & Buchung</h1>
+    <p class="text-xl md:text-2xl opacity-90">Professionelle Performances für dein Event</p>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="bg-white p-12 border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary" *ngFor="let performance of performances">
+        <div class="inline-block px-6 py-2 bg-primary text-white rounded-none text-sm font-semibold mb-6">
+          {{ performance.type }}
+        </div>
+        <h2 class="font-serif text-3xl mb-6 text-text-primary">{{ performance.title }}</h2>
+        <p class="text-text-muted leading-relaxed mb-8">{{ performance.description }}</p>
+        <div class="mb-8 pt-6 border-t border-border-medium">
+          <strong class="block text-text-primary mb-4">Einsatzbereiche:</strong>
+          <ul class="list-none p-0 m-0 space-y-2">
+            <li class="py-2 text-text-muted relative pl-6 before:content-['✓'] before:absolute before:left-0 before:text-primary before:font-bold" *ngFor="let area of performance.suitableFor">
+              {{ area }}
+            </li>
+          </ul>
+        </div>
+        <a routerLink="/kontakt" class="btn btn-primary">Jetzt buchen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-bg-secondary">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="bg-white p-10 border border-border-light text-center">
+        <h3 class="text-2xl mb-4 text-text-primary">🎯 Individuelle Choreografien</h3>
+        <p class="text-text-muted leading-relaxed">Jede Performance wird individuell auf dein Event zugeschnitten</p>
+      </div>
+      <div class="bg-white p-10 border border-border-light text-center">
+        <h3 class="text-2xl mb-4 text-text-primary">🎨 Professionelle Ausstattung</h3>
+        <p class="text-text-muted leading-relaxed">Kostüme, Musik und Lichttechnik werden professionell geplant</p>
+      </div>
+      <div class="bg-white p-10 border border-border-light text-center">
+        <h3 class="text-2xl mb-4 text-text-primary">⏱️ Flexible Termine</h3>
+        <p class="text-text-muted leading-relaxed">Wir finden gemeinsam den perfekten Termin für dein Event</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-black text-white text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h2 class="font-serif text-4xl mb-4">Bereit für eine unvergessliche Performance?</h2>
+    <p class="text-xl mb-10 opacity-95">Kontaktiere mich für ein individuelles Angebot</p>
+    <a routerLink="/kontakt" class="btn btn-primary">Anfrage senden</a>
+  </div>
+</section>

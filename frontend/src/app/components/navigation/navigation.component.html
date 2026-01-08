@@ -1,0 +1,75 @@
+<nav class="fixed top-0 left-0 right-0 bg-white border-b border-border-light shadow-md z-[1000] transition-all duration-300" [class.menu-open]="isMenuOpen()">
+  <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
+    <a routerLink="/" class="flex items-center gap-3 no-underline text-text-primary font-serif text-2xl font-semibold transition-colors duration-300 hover:text-primary" (click)="closeMenu()">
+      <img src="assets/logo.PNG" alt="Crown-Motion Logo" class="h-10 w-auto transition-transform duration-300 hover:scale-105" />
+      <span>Crown-Motion</span>
+    </a>
+    
+    <button 
+      class="md:hidden flex flex-col bg-transparent border-none cursor-pointer p-2 gap-1.5"
+      (click)="toggleMenu()" 
+      aria-label="Menü öffnen/schließen">
+      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.rotate-45]="isMenuOpen()" [class.translate-y-2]="isMenuOpen()"></span>
+      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.opacity-0]="isMenuOpen()"></span>
+      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.-rotate-45]="isMenuOpen()" [class.-translate-y-2]="isMenuOpen()"></span>
+    </button>
+    
+    <ul class="hidden md:flex list-none gap-10 m-0 p-0">
+      <li>
+        <a routerLink="/" (click)="closeMenu()" routerLinkActive="text-primary" 
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Start
+        </a>
+      </li>
+      <li>
+        <a routerLink="/ueber-mich" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Über mich
+        </a>
+      </li>
+      <li>
+        <a routerLink="/tanzstile" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Tanzstile
+        </a>
+      </li>
+      <li>
+        <a routerLink="/kurse" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Kurse
+        </a>
+      </li>
+      <li>
+        <a routerLink="/auftritte" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Auftritte
+        </a>
+      </li>
+      <li>
+        <a routerLink="/galerie" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Galerie
+        </a>
+      </li>
+      <li>
+        <a routerLink="/kontakt" (click)="closeMenu()" routerLinkActive="text-primary"
+           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
+          Kontakt
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile Menu -->
+    <ul class="md:hidden fixed top-[70px] left-0 right-0 bg-white flex-col p-8 gap-6 shadow-lg transform -translate-x-full transition-transform duration-300 z-[999]" 
+        [class.translate-x-0]="isMenuOpen()">
+      <li><a routerLink="/" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Start</a></li>
+      <li><a routerLink="/ueber-mich" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Über mich</a></li>
+      <li><a routerLink="/tanzstile" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Tanzstile</a></li>
+      <li><a routerLink="/kurse" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Kurse</a></li>
+      <li><a routerLink="/auftritte" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Auftritte</a></li>
+      <li><a routerLink="/galerie" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Galerie</a></li>
+      <li><a routerLink="/kontakt" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+

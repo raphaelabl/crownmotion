@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-text-primary bg-bg-primary overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-semibold leading-tight;
+  }
+
+  a {
+    @apply no-underline text-inherit;
+  }
+
+  img {
+    @apply max-w-full h-auto block;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-primary outline-offset-2;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-block px-10 py-4 rounded-full font-semibold text-base text-center cursor-pointer transition-all duration-300 border-none no-underline font-sans;
+
+    &.btn-primary {
+      @apply bg-primary text-white font-semibold;
+
+      &:hover {
+        @apply bg-primary-hover -translate-y-0.5;
+        box-shadow: 0 5px 20px rgba(244, 143, 177, 0.4);
+      }
+    }
+
+    &.btn-secondary {
+      @apply bg-transparent text-black border-2 border-black;
+
+      &:hover {
+        @apply bg-black text-white -translate-y-0.5;
+      }
+    }
+
+    &.btn-outline {
+      @apply bg-transparent text-primary border-2 border-primary;
+
+      &:hover {
+        @apply bg-primary text-white -translate-y-0.5;
+      }
+    }
+
+    &:disabled {
+      @apply opacity-60 cursor-not-allowed;
+    }
+  }
+}
+
+@layer utilities {
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-\[fadeInUp_1s_ease-out\] {
+    animation: fadeInUp 1s ease-out;
+  }
+}
+

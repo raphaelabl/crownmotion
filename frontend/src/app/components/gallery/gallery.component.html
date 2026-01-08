@@ -1,0 +1,33 @@
+<section class="py-32 md:py-24 bg-black text-white text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h1 class="font-serif text-5xl md:text-6xl mb-4">Galerie</h1>
+    <p class="text-xl md:text-2xl opacity-90">Momente voller Leidenschaft und Bewegung</p>
+  </div>
+</section>
+
+<section class="py-16 pb-24">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="flex justify-center gap-4 mb-12 flex-wrap">
+      <button 
+        *ngFor="let category of categories" 
+        [class.bg-primary]="selectedCategory === category"
+        [class.text-white]="selectedCategory === category"
+        [class.text-black]="selectedCategory !== category"
+        (click)="selectCategory(category)"
+        class="px-8 py-3 border-2 border-primary bg-white rounded-none cursor-pointer font-medium transition-all duration-300 hover:bg-primary hover:text-white">
+        {{ category === 'all' ? 'Alle' : (category === 'performance' ? 'Auftritte' : category === 'training' ? 'Training' : 'Shows') }}
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="relative overflow-hidden border border-border-light aspect-[4/3] cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-primary group" *ngFor="let item of filteredItems">
+        <img [src]="item.src" [alt]="item.alt" *ngIf="item.type === 'image'" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span class="text-white font-semibold text-xl uppercase tracking-wider">
+            {{ item.category === 'performance' ? 'Auftritt' : item.category === 'training' ? 'Training' : 'Show' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

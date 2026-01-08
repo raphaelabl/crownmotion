@@ -1,0 +1,231 @@
+.about-hero {
+  padding: 8rem 0 4rem;
+  background: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    padding: 6rem 0 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.about-content {
+  padding: 6rem 0;
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    .about-image {
+      img {
+        width: 100%;
+        border-radius: 0;
+        border: 1px solid var(--color-border-light);
+      }
+    }
+
+    .about-text {
+      h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: var(--color-text-primary);
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--color-text-muted);
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 968px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.philosophy-section {
+  padding: 6rem 0;
+  background: var(--color-bg-secondary);
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-text-primary);
+  }
+
+  .philosophy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    .quote {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--color-primary);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+.experience-section {
+  padding: 6rem 0;
+  background: var(--color-white);
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--color-text-primary);
+  }
+
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 3rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-primary);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 3rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        border: 3px solid var(--color-white);
+        box-shadow: 0 0 0 3px var(--color-primary);
+      }
+
+      .timeline-year {
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-text-primary);
+      }
+
+      p {
+        color: var(--color-text-muted);
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.qualifications-section {
+  padding: 6rem 0;
+  background: var(--color-bg-secondary);
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-text-primary);
+  }
+
+  .qualifications-list {
+    max-width: 700px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--color-white);
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0;
+      font-size: 1.1rem;
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-light);
+      border-left: 4px solid var(--color-primary);
+    }
+  }
+}
+
+.cta-section {
+  padding: 6rem 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+

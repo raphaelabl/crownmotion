@@ -1,0 +1,41 @@
+<footer class="bg-footer-bg text-footer-text py-16 mt-16">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <div>
+        <h3 class="font-serif text-2xl mb-4 text-primary font-semibold">Crown-Motion</h3>
+        <p class="leading-relaxed text-text-light">Professionelle Tänzerin für Kurse, Auftritte und Shows</p>
+      </div>
+      
+      <div>
+        <h4 class="text-lg mb-4 text-primary font-semibold">Navigation</h4>
+        <ul class="list-none p-0 m-0 space-y-2">
+          <li><a routerLink="/" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Start</a></li>
+          <li><a routerLink="/ueber-mich" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Über mich</a></li>
+          <li><a routerLink="/tanzstile" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Tanzstile</a></li>
+          <li><a routerLink="/kurse" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Kurse</a></li>
+          <li><a routerLink="/auftritte" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Auftritte</a></li>
+          <li><a routerLink="/galerie" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Galerie</a></li>
+          <li><a routerLink="/kontakt" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Kontakt</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-lg mb-4 text-primary font-semibold">Kontakt</h4>
+        <p class="mb-4 text-text-light">E-Mail: kontakt&#64;crown-motion.de</p>
+        <div class="flex gap-6 mt-4">
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener" class="text-text-light no-underline font-medium transition-colors duration-300 hover:text-primary">Instagram</a>
+          <a href="#" aria-label="YouTube" target="_blank" rel="noopener" class="text-text-light no-underline font-medium transition-colors duration-300 hover:text-primary">YouTube</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="border-t border-footer-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-text-lighter m-0">&copy; {{ currentYear() }} Crown-Motion. Alle Rechte vorbehalten.</p>
+      <div class="flex gap-8">
+        <a routerLink="/impressum" class="text-text-lighter no-underline transition-colors duration-300 hover:text-primary">Impressum</a>
+        <a routerLink="/datenschutz" class="text-text-lighter no-underline transition-colors duration-300 hover:text-primary">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+

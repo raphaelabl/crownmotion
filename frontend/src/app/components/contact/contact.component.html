@@ -1,0 +1,143 @@
+<section class="py-32 md:py-24 bg-black text-white text-center">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <h1 class="font-serif text-5xl md:text-6xl mb-4">Kontakt</h1>
+    <p class="text-xl md:text-2xl opacity-90">Lass uns gemeinsam etwas Großartiges schaffen</p>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="max-w-[1400px] mx-auto px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
+      <div>
+        <h2 class="font-serif text-4xl mb-6 text-text-primary">Kontaktiere mich</h2>
+        <p class="text-lg leading-relaxed text-text-muted mb-12">
+          Hast du Fragen zu meinen Kursen, möchtest du mich für ein Event buchen 
+          oder einfach mehr über meine Arbeit erfahren? Ich freue mich auf deine Nachricht!
+        </p>
+
+        <div class="mb-12 space-y-8">
+          <div>
+            <strong class="block text-text-primary mb-2 text-lg">📧 E-Mail</strong>
+            <a href="mailto:kontakt@crown-motion.de" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">kontakt&#64;crown-motion.de</a>
+          </div>
+          <div>
+            <strong class="block text-text-primary mb-2 text-lg">📱 Telefon</strong>
+            <a href="tel:+49123456789" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">+49 (0) 123 456 789</a>
+          </div>
+          <div>
+            <strong class="block text-text-primary mb-2 text-lg">📍 Studio</strong>
+            <p class="text-text-muted m-0 leading-relaxed">Tanzstudio Berlin Mitte<br>Musterstraße 123<br>10115 Berlin</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl mb-4 text-text-primary">Folge mir</h3>
+          <div class="flex gap-6 flex-wrap">
+            <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Instagram</a>
+            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">YouTube</a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-12 border border-border-light">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <div>
+            <label for="name" class="block mb-2 text-text-primary font-medium">Name *</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name"
+              class="w-full p-3 border-2 border-border-dark rounded text-base font-sans transition-colors duration-300 focus:outline-none focus:border-primary"
+              [class.border-error]="submitted() && f['name'].invalid">
+            <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['name'].invalid">
+              Bitte gib deinen Namen ein
+            </span>
+          </div>
+
+          <div>
+            <label for="email" class="block mb-2 text-text-primary font-medium">E-Mail *</label>
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email"
+              class="w-full p-3 border-2 border-border-dark rounded text-base font-sans transition-colors duration-300 focus:outline-none focus:border-primary"
+              [class.border-error]="submitted() && f['email'].invalid">
+            <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['email'].invalid">
+              Bitte gib eine gültige E-Mail-Adresse ein
+            </span>
+          </div>
+
+          <div>
+            <label for="phone" class="block mb-2 text-text-primary font-medium">Telefon (optional)</label>
+            <input type="tel" id="phone" formControlName="phone" class="w-full p-3 border-2 border-border-dark rounded text-base font-sans transition-colors duration-300 focus:outline-none focus:border-primary">
+          </div>
+
+          <div>
+            <label for="subject" class="block mb-2 text-text-primary font-medium">Betreff *</label>
+            <select 
+              id="subject" 
+              formControlName="subject"
+              class="w-full p-3 border-2 border-border-dark rounded text-base font-sans transition-colors duration-300 focus:outline-none focus:border-primary"
+              [class.border-error]="submitted() && f['subject'].invalid">
+              <option value="">Bitte wählen</option>
+              <option value="kurs">Kurs-Anfrage</option>
+              <option value="auftritt">Auftritt buchen</option>
+              <option value="workshop">Workshop-Anfrage</option>
+              <option value="sonstiges">Sonstiges</option>
+            </select>
+            <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['subject'].invalid">
+              Bitte wähle einen Betreff
+            </span>
+          </div>
+
+          <div>
+            <label for="message" class="block mb-2 text-text-primary font-medium">Nachricht *</label>
+            <textarea 
+              id="message" 
+              formControlName="message" 
+              rows="6"
+              class="w-full p-3 border-2 border-border-dark rounded text-base font-sans resize-y transition-colors duration-300 focus:outline-none focus:border-primary"
+              [class.border-error]="submitted() && f['message'].invalid"></textarea>
+            <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['message'].invalid">
+              Bitte gib eine Nachricht ein (mindestens 10 Zeichen)
+            </span>
+          </div>
+
+          <div>
+            <label class="flex items-start gap-3 cursor-pointer font-normal">
+              <input 
+                type="checkbox" 
+                formControlName="privacy"
+                class="mt-1 cursor-pointer"
+                [class.outline-2]="submitted() && f['privacy'].invalid"
+                [class.outline-error]="submitted() && f['privacy'].invalid">
+              <span class="leading-relaxed text-text-muted">
+                Ich habe die <a href="/datenschutz" target="_blank" class="text-primary no-underline hover:underline">Datenschutzerklärung</a> gelesen 
+                und stimme der Verarbeitung meiner Daten zu. *
+              </span>
+            </label>
+            <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['privacy'].invalid">
+              Bitte stimme der Datenschutzerklärung zu
+            </span>
+          </div>
+
+          <div>
+            <label class="flex items-start gap-3 cursor-pointer font-normal">
+              <input type="checkbox" formControlName="newsletter" class="mt-1 cursor-pointer">
+              <span class="leading-relaxed text-text-muted">Ich möchte den Newsletter erhalten</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="submitted() && contactForm.invalid">
+            Nachricht senden
+          </button>
+
+          <div class="mt-6 p-4 bg-green-100 text-green-800 rounded text-center" *ngIf="success()">
+            ✓ Vielen Dank! Deine Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei dir.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
