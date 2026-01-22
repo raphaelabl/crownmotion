@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course, DanceStyle, Performance, Experience, ContentImage } from '../models/data.models';
+import { Course, DanceStyle, Performance, Experience, ContentImage, Qualifications } from '../models/data.models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,6 +16,10 @@ export class DataService {
 
   getDanceStyles(): Observable<DanceStyle[]> {
     return this.http.get<DanceStyle[]>(this.API_URL + "/dance_styles/")
+  }
+
+  getQualifications(): Observable<Qualifications[]>{
+    return this.http.get<Qualifications[]>(this.API_URL + "/qualification/")
   }
 
   getCourses(): Observable<Course[]> {

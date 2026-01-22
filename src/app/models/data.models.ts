@@ -51,3 +51,10 @@ export interface ContentImage {
   image: string;
   title: string;
 }
+
+export interface Qualifications{
+  id: number;
+  year: number;
+  title: string;
+  description?: string;
+}

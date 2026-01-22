@@ -66,7 +66,7 @@
     <h2 class="font-serif text-4xl text-center mb-12 text-text-primary">Ausbildungen & Qualifikationen</h2>
     <ul class="max-w-2xl mx-auto list-none p-0 space-y-4">
       <li class="p-6 bg-white border-l-4 border-primary border border-border-light text-lg text-text-primary" *ngFor="let qual of qualifications">
-        {{ qual }}
+        {{qual.year}}: {{ qual.title }}
       </li>
     </ul>
   </div>
