@@ -1,19 +1,33 @@
+import { Time } from "@angular/common";
+
+export interface ContentImage{
+  id: number;
+  image: string;
+  title: string;
+}
+
 export interface DanceStyle {
   id: number;
   name: string;
   description: string;
   suitableFor: string;
-  image: string;
+  image: ContentImage;
 }
 
 export interface Course {
   id: number;
   title: string;
-  level: string;
+  level: number;
+  level_label: string;
   location: string;
-  day: string;
-  time: string;
+  fromDate: Date;
+  toDate: Date;
+  weekDay: number;
+  weekDay_label: string;
+  startTime: Time;
+  durationMinutes: number;
   description: string;
+  courseImage: ContentImage
 }
 
 export interface Performance {
@@ -24,11 +38,16 @@ export interface Performance {
   suitableFor: string[];
 }
 
-export interface GalleryItem {
-  id: number;
-  type: 'image' | 'video';
-  src: string;
-  alt: string;
-  category: 'performance' | 'training' | 'show';
+export interface Experience{
+    id: number,
+    fromYear: number,
+    toYear: number,
+    title: string,
+    description: string
 }
 
+export interface ContentImage {
+  id: number;
+  image: string;
+  title: string;
+}

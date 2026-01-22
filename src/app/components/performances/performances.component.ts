@@ -17,7 +17,14 @@ export class PerformancesComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.performances = this.dataService.getPerformances();
+    this.dataService.getPerformances().subscribe({
+      next: data => {
+        this.performances = data;
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
   }
 }
 

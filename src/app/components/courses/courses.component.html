@@ -8,15 +8,15 @@
 <section class="py-24">
   <div class="max-w-[1400px] mx-auto px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="bg-white p-10 border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary" *ngFor="let course of courses">
+      <div class="bg-white p-10 flex flex-col justify-between border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary" *ngFor="let course of courses">
         <div class="flex justify-between items-start mb-6 gap-4">
           <h2 class="font-serif text-3xl text-text-primary m-0 flex-1">{{ course.title }}</h2>
           <span class="px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap"
                 [ngClass]="{
-                  'bg-bg-tertiary text-black border border-border-dark': course.level !== 'Alle Niveaus',
-                  'bg-primary text-white border border-primary': course.level === 'Alle Niveaus'
+                  'bg-bg-tertiary text-black border border-border-dark': course.level_label !== 'Alle Niveaus',
+                  'bg-primary text-white border border-primary': course.level_label === 'Alle Niveaus'
                 }">
-            {{ course.level }}
+            {{ course.level_label }}
           </span>
         </div>
         <p class="text-text-muted leading-relaxed mb-8">{{ course.description }}</p>
@@ -27,11 +27,11 @@
           </div>
           <div class="flex justify-between text-text-primary">
             <strong class="text-text-muted">📅 Tag:</strong>
-            <span>{{ course.day }}</span>
+            <span>{{ course.fromDate | date:"dd.MM.yyyy" }}-{{ course.toDate | date:"dd.MM.yyyy" }}</span>
           </div>
           <div class="flex justify-between text-text-primary">
             <strong class="text-text-muted">⏰ Uhrzeit:</strong>
-            <span>{{ course.time }}</span>
+            <span>{{ course.startTime.toString().slice(0,5)}}</span>
           </div>
         </div>
         <a routerLink="/kontakt" class="btn btn-primary">Jetzt anmelden</a>

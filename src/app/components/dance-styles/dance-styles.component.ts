@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { DanceStyle } from '../../models/data.models';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dance-styles',
@@ -17,6 +18,13 @@ export class DanceStylesComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.danceStyles = this.dataService.getDanceStyles();
+    this.dataService.getDanceStyles().subscribe({
+      next: data => {
+        this.danceStyles = data;
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
   }
 }

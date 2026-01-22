@@ -17,17 +17,16 @@ export class CoursesComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.courses = this.dataService.getCourses();
+    this.dataService.getCourses().subscribe({
+      next: data => {
+        this.courses = data
+        
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
   }
 
-  getLevelClass(level: string): string {
-    const levelMap: { [key: string]: string } = {
-      'Anfänger': 'level-beginner',
-      'Mittel': 'level-intermediate',
-      'Fortgeschritten': 'level-advanced',
-      'Alle Niveaus': 'level-all'
-    };
-    return levelMap[level] || 'level-all';
-  }
 }
 
