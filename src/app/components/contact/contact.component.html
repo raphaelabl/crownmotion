@@ -1,4 +1,4 @@
-<section class="py-32 md:py-24 bg-black text-white text-center">
+<section class="py-32 md:py-24 bg-primary text-white text-center">
   <div class="max-w-[1400px] mx-auto px-8">
     <h1 class="font-serif text-5xl md:text-6xl mb-4">Kontakt</h1>
     <p class="text-xl md:text-2xl opacity-90">Lass uns gemeinsam etwas Großartiges schaffen</p>
@@ -18,24 +18,26 @@
         <div class="mb-12 space-y-8">
           <div>
             <strong class="block text-text-primary mb-2 text-lg">📧 E-Mail</strong>
-            <a href="mailto:kontakt@crown-motion.de" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">kontakt&#64;crown-motion.de</a>
+            <a href="mailto:crown.motion@gmx.at" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">crown.motion&#64;gmx.at</a>
           </div>
           <div>
             <strong class="block text-text-primary mb-2 text-lg">📱 Telefon</strong>
-            <a href="tel:+49123456789" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">+49 (0) 123 456 789</a>
+            <a href="tel:+49123456789" class="text-primary no-underline transition-colors duration-300 hover:text-primary-hover">+49 178 123 6987</a>
           </div>
           <div>
-            <strong class="block text-text-primary mb-2 text-lg">📍 Studio</strong>
-            <p class="text-text-muted m-0 leading-relaxed">Tanzstudio Berlin Mitte<br>Musterstraße 123<br>10115 Berlin</p>
+            <strong class="block text-text-primary mb-2 text-lg">📍 Standort</strong>
+            <p class="text-text-muted m-0 leading-relaxed">Oberösterreich | Vöcklabruck, Ried i.I. und Umgebung<br>Bayern | Ulm, Augsburg und Umgebung</p>
           </div>
         </div>
 
         <div>
           <h3 class="text-xl mb-4 text-text-primary">Folge mir</h3>
           <div class="flex gap-6 flex-wrap">
-            <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Instagram</a>
-            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">YouTube</a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Facebook</a>
+            <a href="https://www.instagram.com/emily_henle/" target="_blank" rel="noopener" aria-label="Instagram" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Instagram</a>
+            <a href="https://youtube.com/@emily_henle?si=lvgQRNMtBa92a-TC" target="_blank" rel="noopener" aria-label="YouTube" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">YouTube</a>
+            <a href="https://www.tiktok.com/@emilyhenle?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="YouTube" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">TikTok</a>
+            <a href="https://open.spotify.com/intl-de/artist/1YFRRRBrANfvdRqZQdBdws?si=WgZnVhn7TDeFYvzGl4AQ6w" target="_blank" rel="noopener" aria-label="YouTube" class="text-primary no-underline font-medium transition-colors duration-300 hover:text-primary-hover">Spotify</a>
+            
           </div>
         </div>
       </div>
@@ -100,7 +102,7 @@
               class="w-full p-3 border-2 border-border-dark rounded text-base font-sans resize-y transition-colors duration-300 focus:outline-none focus:border-primary"
               [class.border-error]="submitted() && f['message'].invalid"></textarea>
             <span class="block text-error text-sm mt-1" *ngIf="submitted() && f['message'].invalid">
-              Bitte gib eine Nachricht ein (mindestens 10 Zeichen)
+              Bitte gib eine Nachricht ein 
             </span>
           </div>
 
@@ -122,12 +124,7 @@
             </span>
           </div>
 
-          <div>
-            <label class="flex items-start gap-3 cursor-pointer font-normal">
-              <input type="checkbox" formControlName="newsletter" class="mt-1 cursor-pointer">
-              <span class="leading-relaxed text-text-muted">Ich möchte den Newsletter erhalten</span>
-            </label>
-          </div>
+          
 
           <button type="submit" class="btn btn-primary" [disabled]="submitted() && contactForm.invalid">
             Nachricht senden

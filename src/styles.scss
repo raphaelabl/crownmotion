@@ -26,6 +26,12 @@
   *:focus-visible {
     @apply outline-2 outline-primary outline-offset-2;
   }
+
+
+}
+
+.header-bg{
+  background-color: rgb(243, 163, 230)
 }
 
 @layer components {

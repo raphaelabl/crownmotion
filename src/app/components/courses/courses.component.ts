@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Course } from '../../models/data.models';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
@@ -26,6 +27,17 @@ export class CoursesComponent implements OnInit {
         console.log(err)
       }
     });
+  }
+
+  getEndTime(startTime: string, durationMinutes: number): string {
+    const [hours, minutes] = startTime.split(":").map(Number);
+
+    const totalMinutes = hours * 60 + minutes + durationMinutes;
+
+    const endHours = Math.floor(totalMinutes / 60) % 24;
+    const endMinutes = totalMinutes % 60;
+
+    return `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
   }
 
 }

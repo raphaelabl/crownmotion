@@ -23,7 +23,7 @@ export interface Course {
   fromDate: Date;
   toDate: Date;
   weekDay: number;
-  weekDay_label: string;
+  week_day_label: string;
   startTime: Time;
   durationMinutes: number;
   description: string;

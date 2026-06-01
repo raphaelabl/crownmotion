@@ -1,4 +1,4 @@
-<section class="py-32 md:py-24 bg-black text-white text-center">
+<section class="py-32 md:py-24 bg-primary text-white text-center">
   <div class="max-w-[1400px] mx-auto px-8">
     <h1 class="font-serif text-5xl md:text-6xl mb-4">Galerie</h1>
     <p class="text-xl md:text-2xl opacity-90">Momente voller Leidenschaft und Bewegung</p>
@@ -8,7 +8,7 @@
 <section class="py-16 pb-24">
   <div class="max-w-[1400px] mx-auto px-8">
   
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
       <div class="relative overflow-hidden border border-border-light aspect-[4/3] cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-primary group" *ngFor="let item of contentImages">
         <img [src]="item.image" [alt]="item.title" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

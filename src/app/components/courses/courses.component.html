@@ -1,4 +1,4 @@
-<section class="py-32 md:py-24 bg-black text-white text-center">
+<section class="py-32 md:py-24 bg-primary text-white text-center">
   <div class="max-w-[1400px] mx-auto px-8">
     <h1 class="font-serif text-5xl md:text-6xl mb-4">Kurse & Unterricht</h1>
     <p class="text-xl md:text-2xl opacity-90">Finde den perfekten Kurs für dich</p>
@@ -26,12 +26,17 @@
             <span>{{ course.location }}</span>
           </div>
           <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">📅 Tag:</strong>
+            <strong class="text-text-muted">📅 Datum:</strong>
             <span>{{ course.fromDate | date:"dd.MM.yyyy" }}-{{ course.toDate | date:"dd.MM.yyyy" }}</span>
           </div>
           <div class="flex justify-between text-text-primary">
             <strong class="text-text-muted">⏰ Uhrzeit:</strong>
-            <span>{{ course.startTime.toString().slice(0,5)}}</span>
+            <span>{{ course.startTime.toString().slice(0,5)}} - {{ getEndTime(course.startTime.toString().slice(0,5), course.durationMinutes) }}</span>
+          </div>
+
+          <div class="flex justify-between text-text-primary">
+            <strong class="text-text-muted">📌 Wochentag:</strong>
+            <span>{{ course.week_day_label}}</span>
           </div>
         </div>
         <a routerLink="/kontakt" class="btn btn-primary">Jetzt anmelden</a>
