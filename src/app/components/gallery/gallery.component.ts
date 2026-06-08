@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { ContentImage } from '../../models/data.models';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-gallery',
@@ -13,7 +14,15 @@ import { ContentImage } from '../../models/data.models';
 export class GalleryComponent implements OnInit {
   contentImages: ContentImage[] = [];
 
-  constructor(private dataService: DataService) {}
+  @ViewChild('imageView') imageView!: TemplateRef<any>;
+
+  dialogImage: ContentImage = {
+    id: 0,
+    title: '',
+    image: ''
+  }
+
+  constructor(private dataService: DataService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataService.getGalleryItems().subscribe({
@@ -24,6 +33,29 @@ export class GalleryComponent implements OnInit {
         console.log(err)
       }
     });
+  }
+
+  openImage(id: ContentImage) {
+
+    console.log("test")
+    this.dialogImage = id
+
+    let dialogRef = this.dialog.open(this.imageView, { panelClass: 'fullscreen-dialog' });
+  }
+
+  imageSwitch(direction: number) {
+    let currentIndex = this.contentImages.findIndex(image => image.id === this.dialogImage.id);
+    let newIndex = (currentIndex + direction);
+
+    if(newIndex < 0) {
+      newIndex = this.contentImages.length - 1;
+    }
+    if(newIndex >= this.contentImages.length) {
+      newIndex = 0;
+    }
+
+    this.dialogImage = this.contentImages[newIndex];
+
   }
 
 }
