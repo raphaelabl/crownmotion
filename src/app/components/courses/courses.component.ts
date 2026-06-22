@@ -20,7 +20,10 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
     this.dataService.getCourses().subscribe({
       next: data => {
-        this.courses = data
+
+        let dateNow = new Date();
+
+        this.courses = data.filter(course => new Date(course.toDate) > new Date());
         
       },
       error: err => {

@@ -30,6 +30,14 @@ export const routes: Routes = [
     loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent)
   },
   {
+    path: 'impressum',
+    loadComponent: () => import('./components/impressum/impressum.component').then(m => m.ImpressumComponent)
+  },
+  {
+    path: 'dsgvo',
+    loadComponent: () => import('./components/dsgvo/dsgvo.component').then(m => m.DsgvoComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
