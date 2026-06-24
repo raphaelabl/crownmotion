@@ -58,3 +58,12 @@ export interface Qualifications{
   title: string;
   description?: string;
 }
+
+export interface Registration{
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+  privacy: boolean;
+}

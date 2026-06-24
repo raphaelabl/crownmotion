@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course, DanceStyle, Performance, Experience, ContentImage, Qualifications } from '../models/data.models';
+import { Course, DanceStyle, Performance, Experience, ContentImage, Qualifications, Registration } from '../models/data.models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -36,6 +36,10 @@ export class DataService {
 
   getGalleryItems(): Observable<ContentImage[]> {
     return this.http.get<ContentImage[]>(this.API_URL + "/content_image/")
+  }
+
+  postRegistration(registration: Registration): Observable<any> {
+    return this.http.post<any>(this.API_URL + "/registration/", registration);
   }
 }
 

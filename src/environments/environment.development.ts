@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    BACKEND_API: "https://api.crown-motion.at/api"
+    BACKEND_API: "http://localhost:8000/api"
 };
