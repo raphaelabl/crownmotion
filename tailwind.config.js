@@ -40,7 +40,7 @@ module.exports = {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
       },
       backgroundImage: {
-        'hero': "url('assets/home/home.jpg')",
+        'hero': "url('assets/home/RL201755-Bearbeitet.JPG')",
       },
     },
   },
