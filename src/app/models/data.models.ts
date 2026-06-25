@@ -7,6 +7,13 @@ export interface ContentImage{
   pos?: number;
 }
 
+export interface FileContent{
+  id: number;
+  file: string;
+  title: string;
+  description?: string;
+}
+
 export interface DanceStyle {
   id: number;
   name: string;
@@ -28,7 +35,8 @@ export interface Course {
   startTime: Time;
   durationMinutes: number;
   description: string;
-  courseImage: ContentImage
+  courseImage?: ContentImage;
+  courseFile?: FileContent;
 }
 
 export interface Performance {
