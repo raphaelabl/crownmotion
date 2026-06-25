@@ -19,7 +19,8 @@ export class GalleryComponent implements OnInit {
   dialogImage: ContentImage = {
     id: 0,
     title: '',
-    image: ''
+    image: '',
+    pos: 0
   }
 
   constructor(private dataService: DataService, private dialog: MatDialog) {}
@@ -27,7 +28,7 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
     this.dataService.getGalleryItems().subscribe({
       next: data => {
-        this.contentImages = data
+        this.contentImages = data.sort((a, b) => (a.pos ?? 999999) - (b.pos ?? 999999));
       },
       error: err => {
         console.log(err)

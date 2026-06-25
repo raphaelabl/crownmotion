@@ -4,6 +4,7 @@ export interface ContentImage{
   id: number;
   image: string;
   title: string;
+  pos?: number;
 }
 
 export interface DanceStyle {
