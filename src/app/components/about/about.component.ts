@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit{
 
     this.dataService.getQualifications().subscribe({
       next: data => {
-        this.qualifications = data
+        this.qualifications = data.sort((a, b) =>  b.year - a.year)
       }
     })
   }

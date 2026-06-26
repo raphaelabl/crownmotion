@@ -38,6 +38,10 @@
             <strong class="text-text-muted">📌 Wochentag:</strong>
             <span>{{ course.week_day_label}}</span>
           </div>
+          <div class="flex justify-between text-text-primary">
+            <strong class="text-text-muted">💰 Preis:</strong>
+            <span>{{ course.price | currency:'EUR' }}</span>
+          </div>
           <div *ngIf="course.courseFile" class="flex justify-between text-text-primary">
             <a href="{{course.courseFile.file}}" target="_blank"><strong class="text-text-muted">📄 {{course.courseFile.title}}</strong></a>
           </div>

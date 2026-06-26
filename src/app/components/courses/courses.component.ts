@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { Course } from '../../models/data.models';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
@@ -15,14 +14,11 @@ import { Time } from '@angular/common';
 export class CoursesComponent implements OnInit {
   courses: Course[] = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private readonly dataService: DataService) {}
 
   ngOnInit() {
     this.dataService.getCourses().subscribe({
       next: data => {
-
-        let dateNow = new Date();
-
         this.courses = data.filter(course => new Date(course.toDate) > new Date());
         
       },

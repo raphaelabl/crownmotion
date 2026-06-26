@@ -37,6 +37,7 @@ export interface Course {
   description: string;
   courseImage?: ContentImage;
   courseFile?: FileContent;
+  price: number;
 }
 
 export interface Performance {
