@@ -63,13 +63,14 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
     .crown { width: min(56vw, 260px); overflow: visible; }
 
     path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .ink { stroke: var(--ink); stroke-width: 2.6; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    /* Unsichtbar bis zum Zeichnen: Safari (iPhone) malt sonst bei runden Linienenden kleine Punkte */
+    .ink { stroke: var(--ink); stroke-width: 2.6; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
 
     /* E zeichnen, dann drehen */
     .e { transform-box: view-box; transform-origin: 60px 50px; transform: rotate(90deg) scale(.62);
          animation: e-turn 1s cubic-bezier(.65,0,.25,1) 1s both; }
-    .draw-e { animation: draw .7s ease-out .25s forwards; }
-    .draw-m { animation: draw .6s ease-out 2.1s forwards; }
+    .draw-e { animation: draw .7s ease-out .25s both; }
+    .draw-m { animation: draw .6s ease-out 2.1s both; }
 
     .hl { stroke: var(--pink); stroke-width: 4.5; opacity: 0; }
     .hl-m { animation: flash .75s ease 2.1s; }
@@ -78,9 +79,9 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
     .hl-y { animation: flash .6s ease 3.95s; }
 
     .accent-line { stroke: var(--blush); stroke-width: 2.2; stroke-dasharray: 1; stroke-dashoffset: 1;
-                   animation: draw .6s ease-out 4.55s forwards; }
-    .dot { fill: var(--blush); transform-box: fill-box; transform-origin: center; transform: scale(0);
-           animation: pop .45s cubic-bezier(.3,1.6,.5,1) forwards; }
+                   opacity: 0; animation: draw .6s ease-out 4.55s both; }
+    .dot { fill: var(--blush); transform-box: fill-box; transform-origin: center; transform: scale(0); opacity: 0;
+           animation: pop .45s cubic-bezier(.3,1.6,.5,1) both; }
     .d1 { animation-delay: 4.9s; } .d2 { animation-delay: 5s; } .d3 { animation-delay: 5.1s; }
 
     .letters { display: flex; gap: .9rem; font-family: Fraunces, serif; font-size: clamp(1.4rem, 4vw, 1.9rem);
@@ -102,10 +103,10 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
             color: #6b6467; background: none; border: 0; padding: .75rem 1rem; cursor: pointer; }
     .skip:hover { color: var(--ink); }
 
-    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes draw { 0% { stroke-dashoffset: 1; opacity: 0; } 2%, 100% { opacity: 1; } 100% { stroke-dashoffset: 0; } }
     @keyframes e-turn { to { transform: rotate(0deg) scale(1); } }
     @keyframes flash { 0%, 100% { opacity: 0; } 30%, 70% { opacity: 1; } }
-    @keyframes pop { to { transform: scale(1); } }
+    @keyframes pop { 0% { transform: scale(0); opacity: 0; } 20%, 100% { opacity: 1; } 100% { transform: scale(1); } }
     @keyframes letter { 0%, 100% { opacity: .18; color: var(--ink); } 25%, 70% { opacity: 1; color: var(--pink); } }
     @keyframes letter-long { 0%, 100% { opacity: .18; color: var(--ink); } 15%, 80% { opacity: 1; color: var(--pink); } }
     @keyframes letters-done { to { opacity: 0; transform: translateY(-.5rem); } }
