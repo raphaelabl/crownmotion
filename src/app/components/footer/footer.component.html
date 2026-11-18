@@ -1,41 +1,59 @@
-<footer class="bg-footer-bg text-footer-text py-16 mt-16">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-      <div>
-        <h3 class="font-serif text-2xl mb-4 text-primary font-semibold">Crown-Motion</h3>
-        <p class="leading-relaxed text-text-light">Professionelle Tänzerin & Choreografin für Kurse, Auftritte und Shows</p>
+<footer class="bg-cream text-ink pt-20 sm:pt-28 pb-8 overflow-hidden">
+  <div class="container-site">
+    <div class="grid gap-14 lg:grid-cols-12">
+      <!-- Marke -->
+      <div class="lg:col-span-5">
+        <app-crown-mark [size]="44"></app-crown-mark>
+        <p class="mt-6 font-serif text-3xl sm:text-4xl leading-[1.1] text-ink-900 max-w-sm text-balance">
+          Jedem die Krone geben, <span class="italic text-blush-500">die er verdient.</span>
+        </p>
+        <a href="mailto:crown.motion@gmx.at" class="mt-8 inline-block text-lg font-medium link-underline">crown.motion&#64;gmx.at</a>
       </div>
-      
-      <div>
-        <h4 class="text-lg mb-4 text-primary font-semibold">Navigation</h4>
-        <ul class="list-none p-0 m-0 space-y-2">
-          <li><a routerLink="/" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Start</a></li>
-          <li><a routerLink="/ueber-mich" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Über mich</a></li>
-          <li><a routerLink="/tanzstile" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Tanzstile</a></li>
-          <li><a routerLink="/kurse" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Kurse</a></li>
-          <li><a routerLink="/auftritte" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Auftritte</a></li>
-          <li><a routerLink="/galerie" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Galerie</a></li>
-          <li><a routerLink="/kontakt" class="text-text-light no-underline transition-colors duration-300 hover:text-primary">Kontakt</a></li>
+
+      <!-- Navigation -->
+      <div class="lg:col-span-3 lg:col-start-7">
+        <p class="eyebrow mb-6">Seiten</p>
+        <ul class="list-none m-0 p-0 grid grid-cols-2 lg:grid-cols-1 gap-y-3 gap-x-6">
+          @for (l of links; track l.link) {
+            <li><a [routerLink]="l.link" class="text-ink-700 hover:text-blush-500 transition-colors duration-300">{{ l.label }}</a></li>
+          }
         </ul>
       </div>
-      
-      <div>
-        <h4 class="text-lg mb-4 text-primary font-semibold">Kontakt</h4>
-        <p class="mb-4 text-text-light">E-Mail: crown.motion&#64;gmx.at</p>
-        <div class="flex gap-6 mt-4">
-          <a href="https://www.instagram.com/e.mmy_h/" aria-label="Instagram" target="_blank" rel="noopener" class="text-text-light no-underline font-medium transition-colors duration-300 hover:text-primary">Instagram</a>
-          <a href="https://www.youtube.com/@emily_henle" aria-label="YouTube" target="_blank" rel="noopener" class="text-text-light no-underline font-medium transition-colors duration-300 hover:text-primary">YouTube</a>
-        </div>
+
+      <!-- Social -->
+      <div class="lg:col-span-3">
+        <p class="eyebrow mb-6">Folge mir</p>
+        <ul class="list-none m-0 p-0 space-y-3">
+          @for (s of socials; track s.href) {
+            <li>
+              <a [href]="s.href" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 text-ink-700 hover:text-blush-500 transition-colors duration-300">
+                {{ s.label }}
+                <span class="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+              </a>
+            </li>
+          }
+        </ul>
+        <p class="mt-8 text-sm text-ink-500 leading-relaxed">
+          Oberösterreich · Vöcklabruck, Ried i.I.<br>Bayern · Ulm, Augsburg
+        </p>
       </div>
     </div>
-    
-    <div class="border-t border-footer-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-text-lighter m-0">&copy; {{ currentYear() }} Crown-Motion. Alle Rechte vorbehalten.</p>
-      <div class="flex gap-8">
-        <a routerLink="/impressum" class="text-text-lighter no-underline transition-colors duration-300 hover:text-primary">Impressum</a>
-        <a routerLink="/dsgvo" class="text-text-lighter no-underline transition-colors duration-300 hover:text-primary">Datenschutz</a>
+  </div>
+
+  <!-- Riesiger Schriftzug -->
+  <div class="mt-16 sm:mt-24 select-none pointer-events-none" aria-hidden="true">
+    <p class="font-serif text-center leading-[0.8] tracking-[-0.05em] text-[19vw] text-blush-300 whitespace-nowrap">
+      Crown <span class="italic">Motion</span>
+    </p>
+  </div>
+
+  <div class="container-site">
+    <div class="mt-6 pt-6 border-t border-ink/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-ink-500">
+      <p class="m-0">&copy; {{ currentYear() }} Crown-Motion · Emily Henle</p>
+      <div class="flex gap-6">
+        <a routerLink="/impressum" class="hover:text-ink-900 transition-colors">Impressum</a>
+        <a routerLink="/dsgvo" class="hover:text-ink-900 transition-colors">Datenschutz</a>
       </div>
     </div>
   </div>
 </footer>
-

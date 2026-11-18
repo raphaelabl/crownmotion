@@ -1,30 +1,74 @@
-<section class="py-32 md:py-24 bg-primary text-white text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h1 class="font-serif text-5xl md:text-6xl mb-4">Galerie</h1>
-    <p class="text-xl md:text-2xl opacity-90">Momente voller Leidenschaft und Bewegung</p>
-  </div>
-</section>
+<app-page-header
+  number="05"
+  eyebrow="Galerie"
+  title="Momente voller"
+  accent="Leidenschaft."
+  subtitle="Bühne, Training, Backstage – ein Blick hinter die Bewegung.">
+</app-page-header>
 
-<section class="py-16 pb-24">
-  <div class="max-w-[1400px] mx-auto px-8">
-  
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-      <div (click)="openImage(item)" class="relative overflow-hidden border border-border-light aspect-[4/3] cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-primary group" *ngFor="let item of contentImages">
-        <img [src]="item.image" [alt]="item.title" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        </div>
+<section class="section !pt-14 sm:!pt-20 bg-cream">
+  <div class="container-site">
+    @if (loading) {
+      <div class="columns-2 lg:columns-3 gap-4 sm:gap-6">
+        @for (h of [60, 80, 45, 70, 55, 90]; track $index) {
+          <div class="mb-4 sm:mb-6 rounded-3xl bg-blush-100 animate-pulse break-inside-avoid" [style.height.%]="h" [style.min-height.px]="h * 4"></div>
+        }
       </div>
-    </div>
+    } @else if (!contentImages.length) {
+      <p class="lead text-center">Bald gibt es hier neue Bilder zu sehen.</p>
+    } @else {
+      <div class="columns-2 lg:columns-3 gap-3 sm:gap-6">
+        @for (item of contentImages; track item.id; let i = $index) {
+          <button type="button"
+                  class="group relative block w-full mb-3 sm:mb-6 break-inside-avoid overflow-hidden bg-blush-100 cursor-zoom-in text-left"
+                  [ngClass]="i % 5 === 0 ? 'arch' : 'rounded-2xl sm:rounded-[1.75rem]'"
+                  (click)="openImage(i)"
+                  [attr.aria-label]="'Bild öffnen: ' + (item.title || 'Galeriebild ' + (i + 1))"
+                  appReveal [revealDelay]="(i % 3) * 80">
+            <img [src]="item.image" (error)="onImageError(item)" [alt]="item.title || ''" class="w-full h-auto transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]" loading="lazy" />
+            <span class="absolute inset-0 bg-ink-900/0 group-hover:bg-ink-900/25 transition-colors duration-500"></span>
+            <span class="absolute right-3 bottom-3 w-10 h-10 rounded-full bg-white/90 text-ink-900 flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500" aria-hidden="true">+</span>
+            @if (item.title) {
+              <span class="absolute left-4 bottom-4 right-16 text-white font-serif italic text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow">{{ item.title }}</span>
+            }
+          </button>
+        }
+      </div>
+    }
   </div>
 </section>
 
-
-<ng-template #imageView >
-  <div style="display: flex; flex-direction: row; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center; gap: 20px; padding: 20px;">
-    <button style="background-color: white; width: 50px; height: 50px; border-radius: 500px;" (click)="imageSwitch(-1)">&lt;</button>
-    <div class="image-wrapper" >
-      <img [src]="dialogImage.image" [alt]="dialogImage.title">
+<!-- ============ LIGHTBOX ============ -->
+@if (activeImage; as img) {
+  <div class="fixed inset-0 z-[2000] bg-ink-900/95 backdrop-blur-sm flex flex-col animate-[rise_.4s_ease-out]"
+       role="dialog" aria-modal="true" [attr.aria-label]="img.title || 'Bildansicht'"
+       (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+    <div class="flex items-center justify-between px-4 sm:px-8 py-4 text-white/80 text-sm">
+      <span class="font-serif italic text-lg text-white">{{ (activeIndex() ?? 0) + 1 }} <span class="text-white/40">/ {{ contentImages.length }}</span></span>
+      <button type="button" (click)="close()" class="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white text-2xl leading-none flex items-center justify-center transition-colors" aria-label="Schließen">×</button>
     </div>
-    <button style="background-color: white; width: 50px; height: 50px; border-radius: 500px;" (click)="imageSwitch(+1)">&gt;</button>
+
+    <div class="relative flex-1 flex items-center justify-center px-3 sm:px-20 pb-6 min-h-0" (click)="close()">
+      @for (i of [activeIndex()]; track i) {
+        <img [src]="img.image" [alt]="img.title || ''" (click)="$event.stopPropagation()"
+             class="max-h-full max-w-full object-contain rounded-xl shadow-2xl animate-[rise_.45s_cubic-bezier(.2,.8,.2,1)]" />
+      }
+
+      <button type="button" (click)="$event.stopPropagation(); imageSwitch(-1)"
+              class="hidden sm:flex absolute left-5 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white text-ink-900 items-center justify-center text-xl hover:bg-blush-300 transition-colors" aria-label="Vorheriges Bild">←</button>
+      <button type="button" (click)="$event.stopPropagation(); imageSwitch(1)"
+              class="hidden sm:flex absolute right-5 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white text-ink-900 items-center justify-center text-xl hover:bg-blush-300 transition-colors" aria-label="Nächstes Bild">→</button>
+    </div>
+
+    @if (img.title) {
+      <p class="text-center text-white font-serif italic text-lg px-6 -mt-2 mb-3">{{ img.title }}</p>
+    }
+
+    <!-- mobile Steuerung -->
+    <div class="sm:hidden flex items-center justify-center gap-4 pb-8">
+      <button type="button" (click)="imageSwitch(-1)" class="w-12 h-12 rounded-full bg-white/10 text-white text-lg" aria-label="Vorheriges Bild">←</button>
+      <span class="text-xs tracking-eyebrow uppercase text-white/50">Wischen</span>
+      <button type="button" (click)="imageSwitch(1)" class="w-12 h-12 rounded-full bg-white/10 text-white text-lg" aria-label="Nächstes Bild">→</button>
+    </div>
   </div>
-</ng-template>
+}

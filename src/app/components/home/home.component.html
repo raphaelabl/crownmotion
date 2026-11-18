@@ -1,80 +1,189 @@
-<section class="relative h-screen min-h-[600px] flex items-center justify-center bg-black bg-hero bg-cover bg-center bg-fixed overflow-hidden" id="hero">
-  <div class="absolute inset-0 bg-black/60 z-[1]"></div>
-  <div class="relative z-[2] text-center text-white px-8 animate-[fadeInUp_1s_ease-out]">
-    <h1 class="font-serif text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-wide text-white after:content-[''] after:block after:w-24 after:h-0.5 after:bg-primary after:mx-auto after:my-6">
-      Crown Motion
-    </h1>
-    <p class="text-xl md:text-2xl mb-12 font-light tracking-widest uppercase text-primary">
-      Geschichten in Bewegung
-    </p>
-    <div class="flex gap-6 justify-center flex-wrap">
-      <a routerLink="/kurse" class="btn btn-primary">Kurse ansehen</a>
-      <a routerLink="/kontakt" class="btn bg-white text-black border-2 border-white hover:bg-gray-100 hover:border-gray-100">Jetzt buchen</a>
-    </div>
-  </div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] animate-bounce">
-    <span class="block w-8 h-8 border-r-2 border-b-2 border-white rotate-45"></span>
-  </div>
-</section>
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden grain bg-blush-100 min-h-[100svh] flex items-center" id="hero">
+  <div class="pointer-events-none absolute -top-40 -left-32 w-[34rem] h-[34rem] rounded-full bg-white/80 blur-3xl"></div>
+  <div class="pointer-events-none absolute top-1/3 -right-40 w-[38rem] h-[38rem] rounded-full bg-blush-300/70 blur-3xl"></div>
 
-<section class="py-32 bg-bg-primary">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-serif text-5xl md:text-6xl mb-8 text-black font-semibold tracking-tight">
-        Willkommen in meiner Welt des Tanzes
-      </h2>
-      <p class="text-lg md:text-xl leading-relaxed text-text-secondary mb-10 max-w-2xl mx-auto">
-      Tanz ist der Spiegel deines Selbst - er ist deine eigene Sprache. 
-      Durch Bewegung erzählen wir Geschichten. Roh, echt und ehrlich.
-      Ich möchte mit meiner Kunst anderen Menschen ein Lächeln schenken
-      und sie daran erinnern, dass jede Geschichte zählt.
+  <!-- Bewegungslinie -->
+  <svg class="pointer-events-none absolute left-0 right-0 bottom-[12%] w-full h-48 text-blush-500/50" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none" aria-hidden="true">
+    <path class="animate-draw" d="M-40 150 C 240 20, 480 220, 760 110 S 1200 10, 1480 90" stroke="currentColor" stroke-width="1.4" />
+  </svg>
+
+  <div class="container-site relative w-full pt-28 pb-16 sm:pt-32 lg:pt-28 lg:pb-20 grid gap-12 lg:gap-8 lg:grid-cols-12 items-center">
+    <!-- Text -->
+    <div class="lg:col-span-6 xl:col-span-6 relative z-10">
+      <span class="eyebrow animate-rise">Tänzerin · Choreografin · Performerin</span>
+
+      <h1 class="mt-6 font-serif text-ink-900 leading-[0.92] tracking-[-0.04em] text-[3.4rem] sm:text-[5rem] lg:text-[5.6rem] xl:text-[6.6rem]">
+        <span class="block animate-rise delay-1">Geschichten</span>
+        <span class="block animate-rise delay-2 pl-[8%]">in <span class="accent">Bewegung</span></span>
+      </h1>
+
+      <p class="lead mt-8 max-w-md animate-rise delay-3">
+        Tanz ist der Spiegel deines Selbst – deine eigene Sprache. Roh, echt und ehrlich.
+        Kurse, Workshops und Shows mit Emmy.
       </p>
-      <a routerLink="/ueber-mich" class="btn btn-outline">Mehr erfahren</a>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 animate-rise delay-4">
+        <a routerLink="/kurse" class="btn btn-primary">Kurse entdecken <span class="btn-arrow">→</span></a>
+        <a routerLink="/auftritte" class="btn btn-outline">Für dein Event buchen</a>
+      </div>
+    </div>
+
+    <!-- Bildkomposition -->
+    <div class="lg:col-span-6 relative h-[440px] sm:h-[560px] lg:h-[640px]">
+      <!-- Hauptbild im Bogen -->
+      <div class="absolute right-[6%] sm:right-[14%] lg:right-[10%] top-0 w-[66%] sm:w-[54%] lg:w-[58%] h-[92%] arch shadow-[0_40px_80px_-40px_rgba(44,44,44,.5)] animate-rise delay-2">
+        <img src="assets/web/portrait-kick.jpg" alt="Emmy tanzt in einer Unterführung" class="w-full h-full object-cover object-[50%_30%]" />
+      </div>
+
+      <!-- Zweites Bild, rund -->
+      <div class="absolute left-0 sm:left-[6%] lg:left-0 bottom-0 w-[42%] sm:w-[34%] lg:w-[38%] aspect-square rounded-full overflow-hidden ring-8 ring-blush-100 animate-rise delay-4">
+        <img src="assets/web/smile.jpg" alt="Emmy lacht" class="w-full h-full object-cover object-[60%_30%]" />
+      </div>
+
+      <!-- Rotierendes Siegel -->
+      <div class="absolute right-0 bottom-[6%] w-28 h-28 sm:w-36 sm:h-36 animate-rise delay-4" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full animate-spin-slow text-ink-900">
+          <defs>
+            <path id="circlePath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+          </defs>
+          <circle cx="100" cy="100" r="98" fill="#fffbfc" />
+          <text font-size="15" font-family="Manrope, sans-serif" font-weight="600" fill="currentColor">
+            <textPath href="#circlePath" textLength="486" lengthAdjust="spacing">TANZ · KURSE · SHOWS · WORKSHOPS ·</textPath>
+          </text>
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <app-crown-mark [size]="40"></app-crown-mark>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll-Hinweis -->
+  <a href="#intro" class="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-xs font-semibold tracking-eyebrow text-ink-500 uppercase" aria-label="Weiter scrollen">
+    Scroll
+    <span class="block w-px h-10 bg-ink/30 relative overflow-hidden">
+      <span class="absolute inset-x-0 top-0 h-1/2 bg-blush-500 animate-[float_2s_ease-in-out_infinite]"></span>
+    </span>
+  </a>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="overflow-hidden relative z-10">
+<section class="bg-blush-50 text-ink-900 border-y border-blush-200/70 py-5 sm:py-6 overflow-hidden relative z-10" aria-label="Tanzstile">
+  <div class="flex w-max animate-marquee">
+    @for (_ of [0, 1]; track $index) {
+      <div class="flex items-center shrink-0">
+        @for (s of styles; track s) {
+          <span class="px-8 sm:px-12 font-serif text-2xl sm:text-4xl tracking-[-0.03em] whitespace-nowrap">{{ s }}</span>
+        }
+      </div>
+    }
+  </div>
+</section>
+</div>
+
+<!-- ============ INTRO ============ -->
+<section id="intro" class="section bg-cream">
+  <div class="container-site grid gap-14 lg:grid-cols-12 items-center">
+    <div class="lg:col-span-5 relative order-2 lg:order-1" appReveal>
+      <div class="relative max-w-md mx-auto lg:mx-0">
+        <div class="arch aspect-[4/5]">
+          <img src="assets/web/bridge-split.jpg" alt="Emmy im Spagat auf einer Brücke" class="w-full h-full object-cover object-[45%_50%]" loading="lazy" />
+        </div>
+        <div class="absolute -right-4 sm:-right-10 -bottom-8 card px-6 py-5 max-w-[15rem] animate-float">
+          <p class="font-serif text-4xl text-blush-500 leading-none h-7 overflow-visible -mt-3" aria-hidden="true">„</p>
+          <p class="font-serif italic text-lg leading-snug text-ink-900 mt-1">Jede Geschichte zählt.</p>
+          <p class="mt-2 text-xs font-semibold tracking-eyebrow uppercase text-ink-500">— Emmy</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 lg:col-start-7 order-1 lg:order-2" appReveal [revealDelay]="120">
+      <span class="eyebrow">01 — Willkommen</span>
+      <h2 class="heading mt-6 text-ink-900 text-balance">
+        Willkommen in meiner Welt <span class="accent">des Tanzes.</span>
+      </h2>
+      <p class="lead mt-8">
+        Tanz ist der Spiegel deines Selbst – er ist deine eigene Sprache.
+        Durch Bewegung erzählen wir Geschichten. Roh, echt und ehrlich.
+      </p>
+      <p class="lead mt-4">
+        Ich möchte mit meiner Kunst anderen Menschen ein Lächeln schenken
+        und sie daran erinnern, dass jede Geschichte zählt.
+      </p>
+      <a routerLink="/ueber-mich" class="mt-10 inline-flex items-center gap-3 font-semibold text-ink-900 group">
+        <span class="link-underline">Meine Geschichte</span>
+        <span class="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center transition-all duration-300 group-hover:bg-blush-300 group-hover:border-blush-300">→</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="py-32 bg-bg-secondary">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-      <div class="text-center p-8 md:p-12 bg-white border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary">
-        <div class="text-5xl mb-6 opacity-80">💡</div>
-        <h3 class="font-serif text-2xl mb-4 text-black font-semibold">Unterricht & Workshops</h3>
-        <p class="text-text-tertiary leading-relaxed text-sm">Individuell angepasste Kurse für alle Niveaus – oder gezielte Workshops
-    
-        </p>
+<!-- ============ ANGEBOT ============ -->
+<section class="section bg-white">
+  <div class="container-site">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 sm:mb-20" appReveal>
+      <div>
+        <span class="eyebrow">02 — Angebot</span>
+        <h2 class="heading mt-6 text-ink-900 max-w-2xl text-balance">
+          Was ich für dich <span class="accent">tanze.</span>
+        </h2>
       </div>
-      <div class="text-center p-8 md:p-12 bg-white border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary">
-        <div class="text-5xl mb-6 opacity-80">🎬</div>
-        <h3 class="font-serif text-2xl mb-4 text-black font-semibold">Musical Theater</h3>
-        <p class="text-text-tertiary leading-relaxed text-sm">Entdecke die zauberhafte Welt des Musicals - Die Kunst, bei der sich Tanz, Schauspiel und Gesang verbinden</p>
+      <p class="lead max-w-sm">Ob im Kursraum, auf der Bühne oder bei deinem Fest – mit Herz, Technik und Ausdruck.</p>
+    </div>
+
+    <div class="border-t border-ink/10">
+      @for (o of offers; track o.title; let i = $index) {
+        <a [routerLink]="o.link"
+           class="group grid grid-cols-[auto_1fr_auto] sm:grid-cols-12 items-center gap-x-5 sm:gap-x-8 gap-y-3 py-8 sm:py-10 border-b border-ink/10 transition-colors duration-500 hover:bg-blush-50 px-1 sm:px-4 -mx-1 sm:-mx-4 rounded-2xl"
+           appReveal [revealDelay]="i * 80">
+          <span class="sm:col-span-1 font-sans text-xs font-semibold tracking-eyebrow text-ink-500">0{{ i + 1 }}</span>
+          <h3 class="sm:col-span-5 font-serif text-2xl sm:text-4xl text-ink-900 transition-transform duration-500 group-hover:translate-x-2">
+            {{ o.title }}
+          </h3>
+          <span class="sm:hidden w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-ink-900">→</span>
+          <p class="col-span-3 sm:col-span-5 text-ink-500 leading-relaxed">{{ o.text }}</p>
+          <span class="hidden sm:flex sm:col-span-1 justify-end">
+            <span class="w-12 h-12 rounded-full border border-ink/15 flex items-center justify-center text-ink-900 transition-all duration-500 group-hover:bg-ink group-hover:text-white group-hover:-rotate-45">→</span>
+          </span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ BÜHNE / BILDSTREIFEN ============ -->
+<section class="section bg-cream overflow-hidden">
+  <div class="container-site grid gap-6 lg:gap-10 lg:grid-cols-12 items-start">
+    <div class="lg:col-span-7 rounded-[2rem] overflow-hidden aspect-[4/3] sm:aspect-[16/10] relative group lg:mt-24" appReveal>
+      <img src="assets/web/stage-1.jpg" alt="Auftritt vor Publikum" class="w-full h-full object-cover transition-transform duration-[1.6s] group-hover:scale-105" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-transparent to-transparent"></div>
+      <div class="absolute left-6 bottom-6 sm:left-8 sm:bottom-8 text-white">
+        <span class="text-xs font-semibold tracking-eyebrow uppercase text-blush-300">Live</span>
+        <p class="font-serif text-2xl sm:text-4xl mt-1">Auf der Bühne <span class="italic">zuhause</span></p>
       </div>
-      <div class="text-center p-8 md:p-12 bg-white border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary">
-        <div class="text-5xl mb-6 opacity-80">✨</div>
-        <h3 class="font-serif text-2xl mb-4 text-black font-semibold">Vielseitigkeit</h3>
-        <p class="text-text-tertiary leading-relaxed text-sm">Modern/Contemporary, Jazz, HipHop, Commercial, Ballett, Heels und Showdance – für jeden Geschmack</p>
-      </div>
-      <div class="text-center p-8 md:p-12 bg-white border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary">
-        <div class="text-5xl mb-6 opacity-80">🪩</div>
-        <h3 class="font-serif text-2xl mb-4 text-black font-semibold">Events & Shows</h3>
-        <p class="text-text-tertiary leading-relaxed text-sm">Professionelle Auftritte für Bälle, Hochzeiten, Feiern aller Art und besondere Anlässe</p>
+    </div>
+
+    <div class="lg:col-span-5 grid grid-cols-2 lg:grid-cols-1 gap-6 items-end">
+      <p class="font-serif text-[1.35rem] sm:text-3xl lg:text-[2.3rem] leading-[1.15] text-ink-900 lg:pl-4" appReveal [revealDelay]="120">
+        Mein Herz ist voll, wenn andere Menschen durch meine Arbeit
+        <span class="italic text-blush-500">lächeln.</span>
+      </p>
+      <div class="arch aspect-[3/4] lg:w-[78%] lg:ml-auto" appReveal [revealDelay]="200">
+        <img src="assets/web/stage-2.jpg" alt="Emmy tanzt auf einem Ball" class="w-full h-full object-cover object-[35%_50%]" loading="lazy" />
       </div>
     </div>
   </div>
 </section>
 
-<section class="py-32 bg-black text-white text-center">
-  <div class="max-w-4xl mx-auto px-8">
-    <h2 class="font-serif text-5xl md:text-6xl mb-6 font-semibold tracking-tight">
-      Bereit, deine Tanzreise zu beginnen?
-    </h2>
-    <p class="text-lg md:text-xl mb-10 opacity-90 text-text-light">
-      Entdecke deine Leidenschaft für den Tanz in einem meiner Kurse oder buche mich für dein Event!
-    </p>
-    <div class="flex gap-6 justify-center flex-wrap">
-      <a routerLink="/kurse" class="btn btn-primary">Kurse entdecken</a>
-      <a routerLink="/kontakt" class="btn bg-white text-black border-2 border-white hover:bg-gray-100 hover:border-gray-100">Kontakt aufnehmen</a>
-    </div>
-  </div>
-</section>
-
+<!-- ============ CTA ============ -->
+<app-cta-band
+  title="Bereit, deine Tanzreise"
+  accent="zu beginnen?"
+  text="Entdecke deine Leidenschaft für den Tanz in einem meiner Kurse – oder buche mich für dein Event."
+  primaryLabel="Kontakt aufnehmen"
+  primaryLink="/kontakt"
+  secondaryLabel="Kurse entdecken"
+  secondaryLink="/kurse">
+</app-cta-band>

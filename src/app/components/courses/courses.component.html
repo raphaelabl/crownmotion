@@ -1,61 +1,122 @@
-<section class="py-32 md:py-24 bg-primary text-white text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h1 class="font-serif text-5xl md:text-6xl mb-4">Kurse & Unterricht</h1>
-    <p class="text-xl md:text-2xl opacity-90">Finde den perfekten Kurs für dich</p>
+<app-page-header
+  number="03"
+  eyebrow="Kurse"
+  title="Kurse &"
+  accent="Unterricht."
+  subtitle="Finde den perfekten Kurs für dich – egal ob du gerade erst beginnst oder deine Technik verfeinern möchtest."
+  image="assets/web/hero-wall.jpg"
+  imagePosition="62% 40%">
+</app-page-header>
+
+<section class="section bg-cream">
+  <div class="container-site">
+    @if (loading) {
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        @for (s of [1, 2, 3]; track s) {
+          <div class="card h-[32rem] animate-pulse bg-white/60"></div>
+        }
+      </div>
+    } @else if (!courses.length) {
+      <div class="card max-w-2xl mx-auto text-center px-8 py-16" appReveal>
+        <p class="font-serif text-3xl text-ink-900">Gerade sind keine Kurse <span class="italic text-blush-500">ausgeschrieben.</span></p>
+        <p class="lead mt-4">Neue Termine folgen bald. Schreib mir gerne, wenn du informiert werden möchtest.</p>
+        <a routerLink="/kontakt" class="btn btn-primary mt-8">Benachrichtige mich <span class="btn-arrow">→</span></a>
+      </div>
+    } @else {
+      <div class="grid gap-6 lg:gap-8 md:grid-cols-2 xl:grid-cols-3">
+        @for (course of courses; track course.id; let i = $index) {
+          <article class="card group flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_40px_70px_-40px_rgba(240,98,146,.55)]"
+                   appReveal [revealDelay]="(i % 3) * 100">
+            <!-- Bild -->
+            <div class="relative aspect-[16/11] overflow-hidden bg-blush-100">
+              @if (course.courseImage) {
+                <img [src]="course.courseImage.image" (error)="$any($event.target).style.visibility='hidden'" [alt]="course.courseImage.title || course.title"
+                     class="w-full h-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" loading="lazy" />
+              }
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/50 to-transparent"></div>
+
+              <!-- Datum als Stempel -->
+              <div class="absolute top-4 left-4 bg-white/95 backdrop-blur rounded-2xl px-3.5 py-2.5 text-center shadow-sm">
+                <p class="text-[0.65rem] font-semibold tracking-[0.2em] uppercase text-blush-500">{{ course.fromDate | date:'MMM':'':'de' }}</p>
+                <p class="font-serif text-3xl leading-none text-ink-900">{{ course.fromDate | date:'dd' }}</p>
+              </div>
+
+              <span class="absolute top-4 right-4 chip bg-ink-900/80 text-white backdrop-blur">
+                @for (on of levelDots(course.level); track $index) {
+                  <span class="w-1.5 h-1.5 rounded-full" [ngClass]="on ? 'bg-blush-300' : 'bg-white/30'"></span>
+                }
+                <span class="ml-1">{{ course.level_label }}</span>
+              </span>
+            </div>
+
+            <!-- Inhalt -->
+            <div class="flex-1 flex flex-col p-6 sm:p-8">
+              <h2 class="font-serif text-3xl sm:text-[2.1rem] text-ink-900 leading-tight">{{ course.title }}</h2>
+              @if (course.description) {
+                <p class="mt-3 text-ink-500 leading-relaxed">{{ course.description }}</p>
+              }
+
+              <dl class="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 text-sm">
+                <div class="col-span-2 flex gap-3">
+                  <svg class="w-5 h-5 shrink-0 text-blush-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                  <div><dt class="sr-only">Ort</dt><dd class="text-ink-900 font-medium">{{ course.location }}</dd></div>
+                </div>
+                <div class="flex gap-3">
+                  <svg class="w-5 h-5 shrink-0 text-blush-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+                  <div>
+                    <dt class="text-ink-500 text-xs">{{ course.week_day_label }}s</dt>
+                    <dd class="text-ink-900 font-medium">{{ course.fromDate | date:'dd.MM.' }} – {{ course.toDate | date:'dd.MM.yy' }}</dd>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <svg class="w-5 h-5 shrink-0 text-blush-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+                  <div>
+                    <dt class="text-ink-500 text-xs">{{ course.durationMinutes }} Min.</dt>
+                    <dd class="text-ink-900 font-medium">{{ course.startTime.toString().slice(0,5) }} – {{ getEndTime(course.startTime.toString().slice(0,5), course.durationMinutes) }}</dd>
+                  </div>
+                </div>
+              </dl>
+
+              @if (course.courseFile) {
+                <a [href]="course.courseFile.file" target="_blank" rel="noopener"
+                   class="mt-6 flex items-center gap-3 rounded-2xl bg-blush-50 ring-1 ring-blush-200 px-4 py-3 text-sm text-ink-900 hover:bg-blush-100 transition-colors">
+                  <svg class="w-5 h-5 text-blush-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M12 12v6M9.5 15.5 12 18l2.5-2.5"/></svg>
+                  <span class="flex-1 font-medium truncate">{{ course.courseFile.title || 'Infoblatt herunterladen' }}</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              }
+
+              <div class="mt-auto pt-8 flex items-center justify-between gap-4">
+                <p class="font-serif text-3xl text-ink-900">
+                  @if (course.price > 0) {
+                    {{ course.price | currency:'EUR':'symbol':'1.0-2':'de' }}
+                  } @else {
+                    <span class="text-xl italic text-ink-500">Preis auf Anfrage</span>
+                  }
+                </p>
+                <a routerLink="/kontakt" class="btn btn-primary !px-6 !py-3">Anmelden <span class="btn-arrow">→</span></a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
   </div>
 </section>
 
-<section class="py-24">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="bg-white p-10 flex flex-col justify-between border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary" *ngFor="let course of courses">
-        <div class="flex justify-between items-start mb-6 gap-4">
-          <h2 class="font-serif text-3xl text-text-primary m-0 flex-1">{{ course.title }}</h2>
-          <span class="px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap"
-                [ngClass]="{
-                  'bg-bg-tertiary text-black border border-border-dark': course.level_label !== 'Alle Niveaus',
-                  'bg-primary text-white border border-primary': course.level_label === 'Alle Niveaus'
-                }">
-            {{ course.level_label }}
-          </span>
-        </div>
-        <p class="text-text-muted leading-relaxed mb-8">{{ course.description }}</p>
-        <div class="mb-8 pt-6 border-t border-border-medium space-y-4">
-          <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">📍 Ort:</strong>
-            <span>{{ course.location }}</span>
-          </div>
-          <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">📅 Datum:</strong>
-            <span>{{ course.fromDate | date:"dd.MM.yyyy" }}-{{ course.toDate | date:"dd.MM.yyyy" }}</span>
-          </div>
-          <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">⏰ Uhrzeit:</strong>
-            <span>{{ course.startTime.toString().slice(0,5)}} - {{ getEndTime(course.startTime.toString().slice(0,5), course.durationMinutes) }}</span>
-          </div>
-
-          <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">📌 Wochentag:</strong>
-            <span>{{ course.week_day_label}}</span>
-          </div>
-          <div class="flex justify-between text-text-primary">
-            <strong class="text-text-muted">💰 Preis:</strong>
-            <span>{{ course.price | currency:'EUR' }}</span>
-          </div>
-          <div *ngIf="course.courseFile" class="flex justify-between text-text-primary">
-            <a href="{{course.courseFile.file}}" target="_blank"><strong class="text-text-muted">📄 {{course.courseFile.title}}</strong></a>
-          </div>
-        </div>
-        <a routerLink="/kontakt" class="btn btn-primary">Jetzt anmelden</a>
+<!-- Probestunde -->
+<section class="pb-20 sm:pb-28 bg-cream">
+  <div class="container-site">
+    <div class="relative overflow-hidden rounded-[2rem] bg-blush-300 grain px-6 py-14 sm:px-14 sm:py-16 grid gap-8 lg:grid-cols-12 items-center" appReveal>
+      <div class="pointer-events-none absolute -right-16 -top-16 w-72 h-72 rounded-full bg-white/40 blur-2xl"></div>
+      <div class="relative lg:col-span-8">
+        <span class="eyebrow !text-ink-700">Noch unsicher?</span>
+        <h2 class="heading mt-5 text-ink-900">Probestunde <span class="italic">möglich.</span></h2>
+        <p class="mt-4 text-lg text-ink-700 max-w-xl">Buche eine kostenlose Probestunde und erlebe den Unterricht live – ganz ohne Verpflichtung.</p>
+      </div>
+      <div class="relative lg:col-span-4 lg:text-right">
+        <a routerLink="/kontakt" class="btn btn-primary">Probestunde anfragen <span class="btn-arrow">→</span></a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="py-24 bg-bg-secondary text-center">
-  <div class="max-w-3xl mx-auto px-8">
-    <h2 class="font-serif text-4xl mb-6 text-text-primary">Probestunde möglich</h2>
-    <p class="text-xl text-text-muted leading-relaxed mb-10">Du bist dir noch nicht sicher? Buche eine kostenlose Probestunde und erlebe den Unterricht live.</p>
-    <a routerLink="/kontakt" class="btn btn-outline">Probestunde anfragen</a>
   </div>
 </section>

@@ -2,27 +2,21 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClient } from '@angular/common/http';
+import { LogoIntroComponent } from './shared/logo-intro.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationComponent, FooterComponent],
+  imports: [RouterOutlet, NavigationComponent, FooterComponent, LogoIntroComponent],
   template: `
+    <app-logo-intro></app-logo-intro>
     <app-navigation></app-navigation>
-    <main>
+    <main class="min-h-screen">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
   `,
-  styles: [`
-    main {
-      min-height: calc(100vh - 200px);
-      padding-top: 80px;
-    }
-  `]
 })
 export class AppComponent {
   title = 'Crown-Motion';
 }
-

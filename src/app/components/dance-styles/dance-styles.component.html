@@ -1,36 +1,66 @@
-<section class="py-32 md:py-24 bg-primary text-white text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h1 class="font-serif text-5xl md:text-6xl mb-4">Tanzstile</h1>
-    <p class="text-xl md:text-2xl opacity-90">Entdecke die Vielfalt des Tanzes</p>
-  </div>
-</section>
+<app-page-header
+  number="02"
+  eyebrow="Tanzstile"
+  title="Die Vielfalt"
+  accent="des Tanzes."
+  subtitle="Von klassisch bis urban – jeder Stil erzählt seine eigene Geschichte. Finde den, der zu dir spricht."
+  image="assets/web/bridge-split.jpg"
+  imagePosition="45% 50%">
+</app-page-header>
 
-<section class="py-24">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="bg-white p-0 border border-border-light transition-all duration-300 text-center flex flex-col overflow-hidden hover:-translate-y-1 hover:border-primary" *ngFor="let style of danceStyles">
-        <div class="relative w-full h-[600px] overflow-hidden bg-bg-tertiary m-0">
-          @if(style.image){
-            <img [src]="style.image.image" [alt]="style.image.title" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
-          }
-          <div class="absolute inset-x-0 bottom-0 p-6 md:p-4 bg-white/50 backdrop-blur-sm text-left">
-            <h2 class="font-serif text-2xl mb-4 text-black">{{ style.name }}</h2>
-            <p class="leading-relaxed text-text-tertiary mb-6">{{ style.description }}</p>
-            <div class="border-border-medium">
-              <strong class="text-primary block mb-2 font-semibold">Für wen geeignet:</strong>
-              <p class="text-text-muted leading-relaxed">{{ style.suitableFor }}</p>
-            </div>
-          </div>
-        </div>
+<section class="section bg-cream">
+  <div class="container-site">
+    @if (loading) {
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        @for (s of [1, 2, 3]; track s) {
+          <div class="arch aspect-[3/4] bg-blush-100 animate-pulse"></div>
+        }
       </div>
-    </div>
+    } @else if (!danceStyles.length) {
+      <p class="lead text-center">Die Tanzstile werden gerade aktualisiert – schau bald wieder vorbei.</p>
+    } @else {
+      <div class="grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        @for (style of danceStyles; track style.id; let i = $index) {
+          <article class="group" [class.lg:mt-20]="i % 3 === 1" appReveal [revealDelay]="(i % 3) * 100">
+            <div class="relative arch aspect-[3/4] bg-blush-100">
+              @if (style.image) {
+                <img [src]="style.image.image" (error)="$any($event.target).style.visibility='hidden'" [alt]="style.image.title || style.name"
+                     class="w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105" loading="lazy" />
+              } @else {
+                <div class="w-full h-full flex items-center justify-center font-serif italic text-6xl text-blush-300">{{ style.name.charAt(0) }}</div>
+              }
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/0 to-transparent opacity-80"></div>
+              <div class="absolute left-0 right-0 bottom-6 text-center px-4">
+                <span class="block font-serif italic text-blush-300 text-base">{{ pad(i) }}</span>
+                <h2 class="mt-1 font-serif text-white text-3xl sm:text-4xl">{{ style.name }}</h2>
+              </div>
+            </div>
+
+            <div class="mt-7 px-1">
+              <p class="text-ink-700 leading-relaxed">{{ style.description }}</p>
+              @if (style.suitableFor) {
+                <div class="mt-5 pt-5 border-t border-ink/10 flex gap-3">
+                  <span class="text-blush-500 mt-0.5" aria-hidden="true">✦</span>
+                  <p class="text-sm text-ink-500 leading-relaxed">
+                    <span class="block text-[0.7rem] font-semibold tracking-eyebrow uppercase text-ink-900 mb-1">Für wen geeignet</span>
+                    {{ style.suitableFor }}
+                  </p>
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
   </div>
 </section>
 
-<section class="py-24 bg-bg-secondary text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h2 class="font-serif text-4xl mb-4 text-text-primary">Bereit für deine erste Stunde?</h2>
-    <p class="text-xl text-text-muted mb-10">Buche jetzt einen Kurs in deinem Lieblingsstil</p>
-    <a routerLink="/kurse" class="btn btn-primary">Kurse ansehen</a>
-  </div>
-</section>
+<app-cta-band
+  title="Bereit für deine"
+  accent="erste Stunde?"
+  text="Buche jetzt einen Kurs in deinem Lieblingsstil – oder frag eine Probestunde an."
+  primaryLabel="Kurse ansehen"
+  primaryLink="/kurse"
+  secondaryLabel="Probestunde anfragen"
+  secondaryLink="/kontakt">
+</app-cta-band>

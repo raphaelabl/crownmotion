@@ -1,75 +1,88 @@
-<nav class="fixed top-0 left-0 right-0 bg-white border-b border-border-light shadow-md z-[1000] transition-all duration-300" [class.menu-open]="isMenuOpen()">
-  <div class="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
-    <a routerLink="/" class="flex items-center gap-3 no-underline text-text-primary font-serif text-2xl font-semibold transition-colors duration-300 hover:text-primary" (click)="closeMenu()">
-      <img src="assets/logo.PNG" alt="Crown-Motion Logo" class="h-10 w-auto transition-transform duration-300 hover:scale-105" />
-      <span>Crown Motion</span>
+<header class="fixed inset-x-0 top-0 z-[1000] px-3 sm:px-5 pt-3 sm:pt-4">
+  <nav
+    class="mx-auto max-w-site flex items-center justify-between gap-4 rounded-full pl-4 pr-2 sm:pl-6 sm:pr-2.5 py-2 transition-all duration-500"
+    [ngClass]="isScrolled() || isMenuOpen()
+      ? 'bg-white/80 backdrop-blur-xl shadow-[0_10px_40px_-20px_rgba(44,44,44,.35)] ring-1 ring-ink/5'
+      : 'bg-white/40 backdrop-blur-md ring-1 ring-white/60'"
+    aria-label="Hauptnavigation">
+
+    <!-- Logo -->
+    <a routerLink="/" class="flex items-center gap-2.5 text-ink-900 shrink-0 group" aria-label="Crown Motion – Startseite">
+      <span class="transition-transform duration-500 group-hover:-rotate-6">
+        <app-crown-mark [size]="30"></app-crown-mark>
+      </span>
+      <span class="font-serif text-lg sm:text-xl tracking-tight leading-none">
+        Crown <span class="italic text-blush-500">Motion</span>
+      </span>
     </a>
-    
-    <button 
-      class="md:hidden flex flex-col bg-transparent border-none cursor-pointer p-2 gap-1.5"
-      (click)="toggleMenu()" 
-      aria-label="Menü öffnen/schließen">
-      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.rotate-45]="isMenuOpen()" [class.translate-y-2]="isMenuOpen()"></span>
-      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.opacity-0]="isMenuOpen()"></span>
-      <span class="w-6 h-0.5 bg-text-primary transition-all duration-300" [class.-rotate-45]="isMenuOpen()" [class.-translate-y-2]="isMenuOpen()"></span>
-    </button>
-    
-    <ul class="hidden md:flex list-none gap-10 m-0 p-0">
-      <li>
-        <a routerLink="/" (click)="closeMenu()" routerLinkActive="text-primary" 
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Start
-        </a>
-      </li>
-      <li>
-        <a routerLink="/ueber-mich" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Über mich
-        </a>
-      </li>
-      <li>
-        <a routerLink="/tanzstile" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Tanzstile
-        </a>
-      </li>
-      <li>
-        <a routerLink="/kurse" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Kurse
-        </a>
-      </li>
-      <li>
-        <a routerLink="/auftritte" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Auftritte & Buchungen
-        </a>
-      </li>
-      <li>
-        <a routerLink="/galerie" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Galerie
-        </a>
-      </li>
-      <li>
-        <a routerLink="/kontakt" (click)="closeMenu()" routerLinkActive="text-primary"
-           class="no-underline text-text-primary font-medium text-[0.95rem] relative transition-colors duration-300 hover:text-primary after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all duration-300 hover:after:w-full">
-          Kontakt
-        </a>
-      </li>
+
+    <!-- Desktop-Links -->
+    <ul class="hidden lg:flex items-center gap-1 list-none m-0 p-0">
+      @for (item of items; track item.link) {
+        <li>
+          <a [routerLink]="item.link"
+             routerLinkActive="!bg-blush-100 !text-ink-900"
+             [routerLinkActiveOptions]="{ exact: item.link === '/' }"
+             class="block px-4 py-2 rounded-full text-[0.9rem] font-medium text-ink-700 transition-colors duration-300 hover:text-ink-900 hover:bg-white/70">
+            {{ item.label }}
+          </a>
+        </li>
+      }
     </ul>
 
-    <!-- Mobile Menu -->
-    <ul class="md:hidden fixed top-[70px] left-0 right-0 bg-white flex-col p-8 gap-6 shadow-lg transform -translate-x-full transition-transform duration-300 z-[999]" 
-        [class.translate-x-0]="isMenuOpen()">
-      <li><a routerLink="/" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Start</a></li>
-      <li><a routerLink="/ueber-mich" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Über mich</a></li>
-      <li><a routerLink="/tanzstile" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Tanzstile</a></li>
-      <li><a routerLink="/kurse" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Kurse</a></li>
-      <li><a routerLink="/auftritte" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Auftritte</a></li>
-      <li><a routerLink="/galerie" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Galerie</a></li>
-      <li><a routerLink="/kontakt" (click)="closeMenu()" routerLinkActive="text-primary" class="no-underline text-text-primary text-lg hover:text-primary">Kontakt</a></li>
+    <div class="flex items-center gap-2">
+      <a routerLink="/kontakt" class="hidden sm:inline-flex btn btn-primary !py-2.5 !px-5 text-sm">
+        Kontakt <span class="btn-arrow">→</span>
+      </a>
+
+      <!-- Mobile-Toggle -->
+      <button
+        type="button"
+        class="lg:hidden relative w-11 h-11 rounded-full bg-ink text-white flex items-center justify-center"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-controls="mobile-menu"
+        [attr.aria-label]="isMenuOpen() ? 'Menü schließen' : 'Menü öffnen'">
+        <span class="absolute w-4 h-[1.5px] bg-current transition-transform duration-300"
+              [ngClass]="isMenuOpen() ? 'rotate-45' : '-translate-y-[4px]'"></span>
+        <span class="absolute w-4 h-[1.5px] bg-current transition-transform duration-300"
+              [ngClass]="isMenuOpen() ? '-rotate-45' : 'translate-y-[4px]'"></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile-Menü (Vollbild) -->
+<div id="mobile-menu"
+     class="lg:hidden fixed inset-0 z-[999] overflow-hidden bg-blush-100 grain transition-[clip-path] duration-700 ease-[cubic-bezier(.7,0,.2,1)]"
+     [style.clip-path]="isMenuOpen() ? 'circle(150% at calc(100% - 40px) 40px)' : 'circle(0% at calc(100% - 40px) 40px)'"
+     [attr.aria-hidden]="!isMenuOpen()"
+     [attr.inert]="isMenuOpen() ? null : ''">
+  <div class="pointer-events-none absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-blush-300/70 blur-3xl"></div>
+
+  <div class="relative h-full flex flex-col justify-between px-6 sm:px-10 pt-28 pb-10 overflow-y-auto">
+    <ul class="list-none m-0 p-0 space-y-1">
+      @for (item of items; track item.link; let i = $index) {
+        <li class="overflow-hidden">
+          <a [routerLink]="item.link"
+             routerLinkActive="!text-blush-500 italic"
+             [routerLinkActiveOptions]="{ exact: item.link === '/' }"
+             class="flex items-baseline gap-4 py-1.5 font-serif text-[2.6rem] sm:text-6xl leading-tight text-ink-900 transition-all duration-700"
+             [style.transition-delay]="isMenuOpen() ? (120 + i * 60) + 'ms' : '0ms'"
+             [ngClass]="isMenuOpen() ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'">
+            <span class="font-sans text-xs font-semibold tracking-eyebrow text-ink-500 not-italic">0{{ i + 1 }}</span>
+            {{ item.label }}
+          </a>
+        </li>
+      }
     </ul>
+
+    <div class="mt-10 space-y-6">
+      <a routerLink="/kontakt" class="btn btn-primary w-full">Kontakt aufnehmen <span class="btn-arrow">→</span></a>
+      <div class="flex items-center justify-between text-sm text-ink-500">
+        <a href="mailto:crown.motion@gmx.at" class="link-underline">crown.motion&#64;gmx.at</a>
+        <a href="https://www.instagram.com/emily_henle/" target="_blank" rel="noopener" class="link-underline">Instagram</a>
+      </div>
+    </div>
   </div>
-</nav>
-
+</div>

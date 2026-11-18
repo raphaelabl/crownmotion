@@ -1,47 +1,102 @@
-<section class="py-32 md:py-24 bg-primary text-white text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h1 class="font-serif text-5xl md:text-6xl mb-4">Auftritte & Buchung</h1>
-    <p class="text-xl md:text-2xl opacity-90">Professionelle Performances für dein Event</p>
+<app-page-header
+  number="04"
+  eyebrow="Auftritte & Buchung"
+  title="Performances für"
+  accent="dein Event."
+  subtitle="Professionelle Shows, die berühren – individuell choreografiert für Bälle, Hochzeiten, Feiern und besondere Momente."
+  image="assets/web/stage-2.jpg"
+  imagePosition="35% 50%">
+  <div class="mt-8">
+    <a routerLink="/kontakt" class="btn btn-primary">Anfrage senden <span class="btn-arrow">→</span></a>
+  </div>
+</app-page-header>
+
+<!-- Anlässe -->
+<section class="bg-white border-y border-ink/5 py-6 overflow-hidden" aria-label="Anlässe">
+  <div class="flex w-max animate-marquee [animation-duration:75s]">
+    @for (_ of [0, 1]; track $index) {
+      <div class="flex items-center shrink-0">
+        @for (o of occasions; track o) {
+          <span class="px-6 sm:px-8 font-serif text-2xl sm:text-3xl text-ink-900 whitespace-nowrap">{{ o }}</span>
+          <span class="text-blush-500" aria-hidden="true">✦</span>
+        }
+      </div>
+    }
   </div>
 </section>
 
-<section class="py-24">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="bg-white p-12 border border-border-light transition-all duration-300 hover:-translate-y-1 hover:border-primary" *ngFor="let performance of performances">
+<!-- Formate -->
+<section class="section bg-cream">
+  <div class="container-site">
+    <div class="mb-12 sm:mb-16" appReveal>
+      <span class="eyebrow">Formate</span>
+      <h2 class="heading mt-6 text-ink-900">Wähle deine <span class="accent">Performance.</span></h2>
+    </div>
 
-        <h2 class="font-serif text-3xl mb-6 text-text-primary">{{ performance.title }}</h2>
-        <p class="text-text-muted leading-relaxed mb-8">{{ performance.description }}</p>
-
-        <a routerLink="/kontakt" class="btn btn-primary">Jetzt buchen</a>
+    @if (loading) {
+      <div class="space-y-4">
+        @for (s of [1, 2, 3]; track s) {
+          <div class="h-28 rounded-3xl bg-white/70 animate-pulse"></div>
+        }
       </div>
+    } @else if (!performances.length) {
+      <div class="rounded-[2rem] bg-white ring-1 ring-ink/5 px-6 py-14 sm:px-12 text-center" appReveal>
+        <p class="font-serif text-2xl sm:text-3xl text-ink-900">Jede Performance ist <span class="italic text-blush-500">einzigartig.</span></p>
+        <p class="lead mt-4 max-w-xl mx-auto">Solo, Gruppe oder Mitternachtseinlage – erzähl mir von deinem Event und ich stelle dir ein individuelles Angebot zusammen.</p>
+        <a routerLink="/kontakt" class="btn btn-primary mt-8">Event anfragen <span class="btn-arrow">→</span></a>
+      </div>
+    } @else {
+      <div class="border-t border-ink/10">
+        @for (performance of performances; track performance.id; let i = $index) {
+          <article class="group grid gap-4 sm:gap-8 sm:grid-cols-12 items-start py-10 sm:py-12 border-b border-ink/10" appReveal [revealDelay]="i * 80">
+            <span class="sm:col-span-1 font-serif italic text-4xl sm:text-5xl text-blush-300 leading-none transition-colors duration-500 group-hover:text-blush-500">{{ pad(i) }}</span>
+            <h3 class="sm:col-span-4 font-serif text-3xl sm:text-4xl text-ink-900 leading-tight">{{ performance.title }}</h3>
+            <p class="sm:col-span-5 text-ink-500 leading-relaxed text-base sm:text-lg">{{ performance.description }}</p>
+            <div class="sm:col-span-2 sm:text-right">
+              <a routerLink="/kontakt" class="inline-flex items-center gap-2 font-semibold text-ink-900 group/link">
+                <span class="link-underline">Buchen</span>
+                <span class="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center transition-all duration-300 group-hover/link:bg-ink group-hover/link:text-white group-hover/link:-rotate-45">→</span>
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Versprechen -->
+<section class="section bg-white">
+  <div class="container-site grid gap-12 lg:grid-cols-12 items-center">
+    <div class="lg:col-span-5" appReveal>
+      <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
+        <img src="assets/web/stage-1.jpg" alt="Emmy bei einem Auftritt" class="w-full h-full object-cover object-[48%_50%]" loading="lazy" />
+      </div>
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7">
+      <div appReveal>
+        <span class="eyebrow">Warum mit mir</span>
+        <h2 class="heading mt-6 text-ink-900">Mit Herz <span class="accent">geplant.</span></h2>
+      </div>
+      <ul class="mt-12 list-none m-0 p-0 space-y-4">
+        @for (p of promises; track p.title; let i = $index) {
+          <li class="flex gap-5 rounded-3xl bg-cream p-6 sm:p-7 ring-1 ring-ink/5" appReveal [revealDelay]="i * 100">
+            <span class="shrink-0 w-12 h-12 rounded-full bg-blush-300 text-ink-900 flex items-center justify-center font-serif italic text-lg">{{ i + 1 }}</span>
+            <div>
+              <h3 class="font-serif text-2xl text-ink-900">{{ p.title }}</h3>
+              <p class="mt-2 text-ink-500 leading-relaxed">{{ p.text }}</p>
+            </div>
+          </li>
+        }
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="py-24 bg-bg-secondary">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <div class="bg-white p-10 border border-border-light text-center">
-        <h3 class="text-2xl mb-4 text-text-primary"> ⭐️ Individuelle Choreografien</h3>
-        <p class="text-text-muted leading-relaxed">Jede Performance wird individuell auf dich & dein Event angepasst</p>
-      </div>
-      <div class="bg-white p-10 border border-border-light text-center">
-        <h3 class="text-2xl mb-4 text-text-primary">👑 Professionelle Beratung und Planung</h3>
-        <p class="text-text-muted leading-relaxed">Ich unterstütze dich bei der Planung und Umsetzung deines Auftritts</p>
-      </div>
-      <div class="bg-white p-10 border border-border-light text-center">
-        <h3 class="text-2xl mb-4 text-text-primary">⏳ Flexible Termine</h3>
-        <p class="text-text-muted leading-relaxed">Wir finden gemeinsam einen Zeitraum für die perfekte Vorbereitung</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-24 bg-black text-white text-center">
-  <div class="max-w-[1400px] mx-auto px-8">
-    <h2 class="font-serif text-4xl mb-4">Bereit für eine unvergessliche Performance?</h2>
-    <p class="text-xl mb-10 opacity-95">Kontaktiere mich für ein individuelles Angebot</p>
-    <a routerLink="/kontakt" class="btn btn-primary">Anfrage senden</a>
-  </div>
-</section>
+<app-cta-band
+  title="Bereit für eine"
+  accent="unvergessliche Performance?"
+  text="Kontaktiere mich für ein individuelles Angebot – ich freue mich auf dein Event."
+  primaryLabel="Anfrage senden"
+  primaryLink="/kontakt">
+</app-cta-band>
