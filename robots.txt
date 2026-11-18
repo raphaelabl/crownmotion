@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://crown-motion.at/sitemap.xml
