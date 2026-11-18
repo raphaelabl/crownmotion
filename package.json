@@ -7,7 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:seo": "ng build && node scripts/prerender-seo.mjs",
+    "deploy": "npm run build:seo && npx angular-cli-ghpages --dir=dist/dancer-website --cname=crown-motion.at"
   },
   "private": true,
   "dependencies": {

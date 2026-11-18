@@ -1,0 +1,60 @@
+{
+  "site": "https://crown-motion.at",
+  "image": "https://crown-motion.at/assets/web/portrait-kick.jpg",
+  "routes": [
+    {
+      "path": "",
+      "title": "Crown Motion – Emmy Henle | Tanzkurse, Choreografie & Showtanz",
+      "description": "Emmy Henle – Tänzerin, Choreografin und Tanzlehrerin. Tanzkurse, Workshops und Showacts für Hochzeiten, Bälle und Events in Oberösterreich (Vöcklabruck, Ried i.I.) und Bayern (Ulm, Günzburg, Augsburg).",
+      "priority": "1.0"
+    },
+    {
+      "path": "ueber-mich",
+      "title": "Über mich – Emmy Henle, Tänzerin & Choreografin | Crown Motion",
+      "description": "Lerne Emmy Henle kennen: Tänzerin, Choreografin, Musical-Performerin, Tanzlehrerin und Songwriterin – ausgebildet in Bühnentanz und Musical.",
+      "priority": "0.8"
+    },
+    {
+      "path": "tanzstile",
+      "title": "Tanzstile – Contemporary, Jazz, Hip Hop, Heels & Ballett | Crown Motion",
+      "description": "Von klassischem Ballett über Modern bis hin zu Hip Hop: Contemporary, Jazz, Commercial, Heels, Showdance und Musical mit Emmy Henle.",
+      "priority": "0.8"
+    },
+    {
+      "path": "kurse",
+      "title": "Tanzkurse & Workshops – Oberösterreich und Bayern | Crown Motion",
+      "description": "Tanzkurse und Workshops für alle Niveaus mit Emmy Henle – Contemporary, Jazz, Hip Hop, Heels und mehr in Vöcklabruck, Ried i.I., Ulm, Günzburg und Augsburg. Jetzt anmelden.",
+      "priority": "0.9"
+    },
+    {
+      "path": "auftritte",
+      "title": "Showtanz buchen – Hochzeit, Ball & Mitternachtseinlage | Crown Motion",
+      "description": "Professionelle Tanzshows und Choreografien für Hochzeiten, Bälle, Mitternachtseinlagen, Firmenfeiern, Geburtstage und Galas – individuell choreografiert von Emmy Henle.",
+      "priority": "0.9"
+    },
+    {
+      "path": "galerie",
+      "title": "Galerie – Fotos von Auftritten & Shows | Crown Motion",
+      "description": "Eindrücke aus Shows, Musicals, Kursen und Auftritten von Emmy Henle und Crown Motion.",
+      "priority": "0.6"
+    },
+    {
+      "path": "kontakt",
+      "title": "Kontakt & Anfrage | Crown Motion – Emmy Henle",
+      "description": "Anfrage für Tanzkurse, Workshops oder einen Showact für dein Event – Emmy Henle, Crown Motion. Oberösterreich und Bayern.",
+      "priority": "0.7"
+    },
+    {
+      "path": "impressum",
+      "title": "Impressum | Crown Motion",
+      "description": "Impressum von Crown Motion – Emily Henle.",
+      "priority": "0.2"
+    },
+    {
+      "path": "dsgvo",
+      "title": "Datenschutzerklärung | Crown Motion",
+      "description": "Datenschutzerklärung von Crown Motion – Emily Henle.",
+      "priority": "0.2"
+    }
+  ]
+}

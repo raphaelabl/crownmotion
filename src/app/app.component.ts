@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoIntroComponent } from './shared/logo-intro.component';
+import { SeoService } from './shared/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -19,4 +20,8 @@ import { LogoIntroComponent } from './shared/logo-intro.component';
 })
 export class AppComponent {
   title = 'Crown-Motion';
+
+  constructor(seo: SeoService) {
+    seo.init();
+  }
 }
