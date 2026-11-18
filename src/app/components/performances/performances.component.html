@@ -4,21 +4,20 @@
   title="Performances für"
   accent="dein Event."
   subtitle="Professionelle Shows, die berühren – individuell choreografiert für Bälle, Hochzeiten, Feiern und besondere Momente."
-  image="assets/web/stage-2.jpg"
-  imagePosition="35% 50%">
+  image="assets/web/stage-lights.jpg"
+  imagePosition="28% 50%">
   <div class="mt-8">
     <a routerLink="/kontakt" class="btn btn-primary">Anfrage senden <span class="btn-arrow">→</span></a>
   </div>
 </app-page-header>
 
 <!-- Anlässe -->
-<section class="bg-white border-y border-ink/5 py-6 overflow-hidden" aria-label="Anlässe">
-  <div class="flex w-max animate-marquee [animation-duration:75s]">
+<section class="bg-blush-50 text-ink-900 border-y border-blush-200/70 py-5 sm:py-6 overflow-hidden" aria-label="Anlässe">
+  <div class="flex w-max animate-marquee">
     @for (_ of [0, 1]; track $index) {
       <div class="flex items-center shrink-0">
         @for (o of occasions; track o) {
-          <span class="px-6 sm:px-8 font-serif text-2xl sm:text-3xl text-ink-900 whitespace-nowrap">{{ o }}</span>
-          <span class="text-blush-500" aria-hidden="true">✦</span>
+          <span class="px-8 sm:px-12 font-serif text-2xl sm:text-4xl tracking-[-0.03em] whitespace-nowrap">{{ o }}</span>
         }
       </div>
     }
@@ -70,7 +69,7 @@
   <div class="container-site grid gap-12 lg:grid-cols-12 items-center">
     <div class="lg:col-span-5" appReveal>
       <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
-        <img src="assets/web/stage-1.jpg" alt="Emmy bei einem Auftritt" class="w-full h-full object-cover object-[48%_50%]" loading="lazy" />
+        <img src="assets/web/stage-crowd.jpg" alt="Emmy tanzt vor Publikum auf der Bühne" class="w-full h-full object-cover object-[45%_50%]" loading="lazy" />
       </div>
     </div>
     <div class="lg:col-span-6 lg:col-start-7">
